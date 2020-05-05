@@ -25,7 +25,7 @@
                                         product
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="product_list.html"> product list</a>
+                                        <a class="dropdown-item" href="app/model/products.php"> product list</a>
                                         <a class="dropdown-item" href="single-product.html">product details</a>
                                         
                                     </div>
