@@ -10,7 +10,7 @@ class Shop extends View{
       foreach($this->model->getProducts() as $product){
             $str= $str . '<div class="col-lg-6 col-sm-6">';
             $str .=' <div class="single_product_item">';
-            $str .='<img src=    ../img/product/' . $product->getpicture(). 'class="img-fluid">';
+            $str .='<img src=../img/product/' . $product->getpicture() . ' </img> ' ;
             $str .='<h3> <p>'.$product->getCost().'EPG </p></h3>';
             $str .='
             <form  action="explore.php?action=details"" method="post">
