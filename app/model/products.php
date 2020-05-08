@@ -85,6 +85,17 @@ function getProducts_search() {
     return $this->products_search;
     
 }
-}		 
+function insertProduct($type,$name,$cost,$picture,$price){
+ $sql = "INSERT INTO product (type, name,cost,picture,price) VALUES ('$type', '$name','$cost','$picture','$price')";
+        if($this->dbh->query($sql) === true){
+            echo "Records inserted successfully.";
+            $this->fillArray();
+        } else{
+            echo "ERROR: Could not able to execute $sql. " .  $this->dbh->getConn()->error;
+        }  
+      }
+
+}
+		 
 	  
 	
