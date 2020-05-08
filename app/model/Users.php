@@ -43,7 +43,9 @@ class Users extends Model {
         $number = $this->dbh->getConn()->real_escape_string($number);
         $address = $this->dbh->getConn()->real_escape_string($address);
         $password = $this->dbh->getConn()->real_escape_string($password);
-      */ $sql = "INSERT INTO user (fname, lname,email,number,address,password,username,role) VALUES ('$fname', '$lname','$email','$number','$address','$password','$username','$role')";
+      */
+	    $password=md5($password);
+	    $sql = "INSERT INTO user (fname, lname,email,number,address,password,username,role) VALUES ('$fname', '$lname','$email','$number','$address','$password','$username','$role')";
         if($this->dbh->query($sql) === true){
             echo "Records inserted successfully.";
             $this->fillArray();
@@ -57,8 +59,8 @@ class Users extends Model {
 	  }
 	  
 	function login($username,$password){
-		$username= $_REQUEST['username'];	
-		$password=$_REQUEST['password']; 
+		#$username= $_REQUEST['username'];	
+		$password=md5($password);
 			 $sql = "SELECT ID FROM user where username='$username' and password='$password'";
 			 $result = $this->dbh->query($sql);
 			 if($result== true){
