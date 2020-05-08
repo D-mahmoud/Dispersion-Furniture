@@ -97,8 +97,18 @@ class product extends Model {
    
 
     }
+	
   }
+  function deleteProduct(){
+    $sql="delete from product where ID=$this->ID;";
+	  if($this->db->query($sql) === true){
+            echo "deletet successfully.";
+        } else{
+            echo "ERROR: Could not able to execute $sql. " . $conn->error;
+        }
+	}
 
+}
 
   
 
@@ -106,4 +116,3 @@ class product extends Model {
   
  
 	 
-}
