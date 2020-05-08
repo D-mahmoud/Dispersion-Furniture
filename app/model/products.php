@@ -13,8 +13,7 @@ class Products extends Model {
         $this->fillArray_search();
     }
 
-
-	function fillArray() {
+   	function fillArray() {
 		$this->products = array();
 		$this->dbh = $this->connect();
 		$result = $this->readProducts();
@@ -38,14 +37,14 @@ class Products extends Model {
 		}
     }
 
-
+    
     function search($key)
-{   
+    {   
     if(!empty($_POST["key"])){
     $key=$_REQUEST['key'];
     $this->k=$key;
 
-    $sql="(SELECT * FROM product WHERE ( code LIKE '%".$_POST["key"]."%') OR (name LIKE '%".$_POST["key"]."%') OR (cost LIKE '%".$_POST["key"]."%'))" ;
+    $sql="(SELECT * FROM product WHERE ( type LIKE '%".$_POST["key"]."%') OR ( code LIKE '%".$_POST["key"]."%') OR (name LIKE '%".$_POST["key"]."%') OR (cost LIKE '%".$_POST["key"]."%'))" ;
     $result = $this->dbh->query($sql);
     if($result== true){
     if ($result->num_rows > 0){
@@ -78,14 +77,14 @@ function fillArray_search() {
     $this->dbh = $this->connect();
     $result = $this->search($this->k);
     while ($row = $result->fetch_assoc()) {
-        array_push($this->products_search, new Product($row["id"],$row["type"],$row["name"],$row["code"],$row["cost"],$row["picture"]));
+        array_push($this->products_search, new Product($row["id"],$row["name"],$row["type"],$row["code"],$row["cost"],$row["picture"]));
     }
 }
-function getProducts_search( ) {
+
+function getProducts_search() {
     return $this->products_search;
     
 }
-
 }		 
 	  
 	

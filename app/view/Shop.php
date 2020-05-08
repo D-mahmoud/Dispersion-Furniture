@@ -2,18 +2,18 @@
 require_once(__ROOT__ . "view/View.php");
 class Shop extends View{
     public function output()
-    {$x;
+    {
         $str="";
         $i=2;
        # foreach(array_slice($this->model->getProducts() , 0, $i)as $product){
            
       foreach($this->model->getProducts() as $product){
-            $str= $str . '<div class="col-lg-6 col-sm-6">';
-            $str .=' <div class="single_product_item">';
-            $str .='<img src=../img/product/' . $product->getpicture() . ' </img> ' ;
-            $str .='<h3> <p>'.$product->getCost().'EPG </p></h3>';
+             $str= $str . '<div class="col-lg-6 col-sm-6">';
+             $str .=' <div class="single_product_item">';
+             $str .='<img src=../img/product/' . $product->getpicture() . ' </img> ' ;
+             $str .='<h3> <p>'.$product->getCost().'EPG </p></h3>';
             $str .='
-            <form  action="explore.php?action=details"" method="post">
+            <form  action="single-product.php" method="post">
             <button type="submit" class="btn_3" >'.$product->getName().'</button>  </div> </div>
             <input type="hidden" name="id"  value='.$product->getID().'>
 
@@ -23,38 +23,7 @@ class Shop extends View{
     }
     return $str;
     }
-public function details()
-{
-    $str="";
-    $str.="<h5>Welcome ".$this->model->getID()."</h5>";
-    
-    return $str;
-}
 
-    public function product_list()
-    {
-        $str='  <h3>Foam filling cotton slow <br>
-        rebound pillows</h3>
-    <p>
-        Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources. Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Credibly innovate granular internal or organic sources whereas high standards in web-readiness. Energistically scale future-proof core competencies vis-a-vis impactful experiences. Dramatically synthesize integrated schemas. with optimal networks.
-    </p>
-    <div class="card_area">
-        <div class="product_count_area">
-            <p>Quantity</p>
-            <div class="product_count d-inline-block">
-                <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
-                <input class="product_count_item input-number" type="text" value="1" min="0" max="10">
-                <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
-            </div>
-            <p>$5</p>
-        </div>
-      <div class="add_to_cart">
-          <a href="#" class="btn_3">add to cart</a>
-      </div>
-    </div>';
-    return $str;
-    }
-    
 public function search(){
     $str='
     <form action="explore.php?action=search" method="post">
@@ -70,13 +39,18 @@ public function search_output(){
     foreach($this->model->getProducts_search() as $product){
         $str= $str . '<div class="col-lg-6 col-sm-6">';
         $str .=' <div class="single_product_item">';
-        $str .='<img src=    ../img/product/' . $product->getpicture(). 'class="img-fluid">';
-        $str .='<h3> <p>'.$product->getCost().'EPG </p>';
-        $str .='<a href="single-product.php">'.$product->getName().'</a> </h3> </div> </div>';
+        $str .='<img src=../img/product/' . $product->getpicture() . ' </img> ' ;
+        $str .='<h3> <p>'.$product->getCost().'EPG </p></h3>';
+       $str .='
+       <form  action="single-product.php?action=details" method="post">
+       <button type="submit" class="btn_3" >'.$product->getName().'</button>  </div> </div>
+       <input type="hidden" name="id"  value='.$product->getID().'>
+
+       </form>';
+    
     }
-  # $str=$str. $this->model->getProducts_search() ;
-return $str;
-}
+    return $str;
+    }
 
     public function feature()
 {

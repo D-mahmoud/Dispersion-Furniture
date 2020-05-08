@@ -8,11 +8,7 @@ class ProductsController extends Controller{
 		$this->model->search($key);
 	
 	}
-	public function details(){
-		$id=$_REQUEST['id'];
-		$this->model->details($id);
-
-	}
+	
 	
 }
 ?>
