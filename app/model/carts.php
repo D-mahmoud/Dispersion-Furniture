@@ -4,8 +4,7 @@ require_once(__ROOT__ . "model/cart.php");
 
 class Carts extends Model {
     private $carts;
-    private $dbh;
-    private $k;
+   
 
 
 	function __construct() {
@@ -27,9 +26,11 @@ class Carts extends Model {
 	}
 
 	function readCarts(){
-		$sql = "SELECT * FROM cart";
 
-		$result = $this->dbh->query($sql);
+		$dbh = DBh::getInstance();
+		$mysqli = $dbh->getConnection(); 
+		$sql = "SELECT * FROM cart";
+		$result =	$mysqli->query($sql);
 		if ($result->num_rows > 0){
 			return $result;
 		}
@@ -40,8 +41,13 @@ class Carts extends Model {
 
 	
     function insertCarts($id,$productid,$userid, $quantity){
+		$dbh = DBh::getInstance();
+        $mysqli = $dbh->getConnection();   
+
+      	
+		  $result =	$mysqli->query($sql);
       $sql = "INSERT INTO cart (id, productid,userid,quantity) VALUES ('$id', '$productid','$userid','$quantity')";
-        if($this->dbh->query($sql) === true){
+        if($result  === true){
             echo "Records inserted successfully.";
             $this->fillArray();
         } else{
