@@ -1,11 +1,14 @@
+
 <?php
 require_once(__ROOT__ . "model/Model.php");
 require_once(__ROOT__ . "model/User.php");
 
+
 class Users extends Model {
     private $users;
-    private $dbh;
-
+   // private $dbh;
+ 
+	
 	function __construct() {
 		$this->fillArray();
 	}
@@ -24,9 +27,11 @@ class Users extends Model {
 	}
 
 	function readUsers(){
+		$dbh = DBh::getInstance();
+		$mysqli = $dbh->getConnection(); 
 		$sql = "SELECT * FROM user";
-
-		$result = $this->dbh->query($sql);
+		$result =	$mysqli->query($sql);
+	//	$result = $this->dbh->query($sql);
 		if ($result->num_rows > 0){
 			return $result;
 		}
@@ -37,16 +42,14 @@ class Users extends Model {
 
 	
     function insertUser($fname,$lname,$email,$number, $address,$password,$username,$role){
-       /* $fname = $this->dbh->getConn()->$fname;
-        $lname = $this->dbh->getConn()->$lname;
-        $email = $this->dbh->getConn()->real_escape_string($email);
-        $number = $this->dbh->getConn()->real_escape_string($number);
-        $address = $this->dbh->getConn()->real_escape_string($address);
-        $password = $this->dbh->getConn()->real_escape_string($password);
-      */
-	    $password=md5($password);
-	    $sql = "INSERT INTO user (fname, lname,email,number,address,password,username,role) VALUES ('$fname', '$lname','$email','$number','$address','$password','$username','$role')";
-        if($this->dbh->query($sql) === true){
+		$dbh = DBh::getInstance();
+        $mysqli = $dbh->getConnection();   
+
+      	$password=md5($password);
+		  $result =	$mysqli->query($sql);
+
+	  $sql = "INSERT INTO user (fname, lname,email,number,address,password,username,role) VALUES ('$fname', '$lname','$email','$number','$address','$password','$username','$role')";
+        if( $result === true){
             echo "Records inserted successfully.";
             $this->fillArray();
         } else{
@@ -59,18 +62,22 @@ class Users extends Model {
 	  }
 	  
 	function login($username,$password){
-		#$username= $_REQUEST['username'];	
+		$dbh = DBh::getInstance();
+		$mysqli = $dbh->getConnection(); 
 		$password=md5($password);
 			 $sql = "SELECT ID FROM user where username='$username' and password='$password'";
-			 $result = $this->dbh->query($sql);
+			 $result =	$mysqli->query($sql);
 			 if($result== true){
 			 if ($result->num_rows ==1){
-					 $row =  $this->dbh->fetchRow();
-					 $_SESSION["ID"]=$row["ID"];
-					 $_SESSION["username"]="$username";
-					 header("Location:explore.php");
+					 //$row = $result ->fetchRow();
+					 foreach($row as $row){
+						$_SESSION["ID"]=$row["ID"];
+						$_SESSION["username"]="$username";
 					
 				 }
+				 header("Location:explore.php");}
+			 
+					
 			else {
 				echo "<script type='text/javascript'>alert(\"Wrong Username or Password please re-try\")
 				location='login.php';</script>";
