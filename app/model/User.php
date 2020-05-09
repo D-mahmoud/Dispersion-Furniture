@@ -92,9 +92,11 @@ class User extends Model {
   }
 
   function readUser($ID){
+    $dbh = DBh::getInstance();
+		$mysqli = $dbh->getConnection(); 
     $sql = "SELECT * FROM user where ID=.$ID";
-    $db = $this->connect();
-    $result = $db->query($sql);
+    //$db = $this->connect();
+    $result =	$mysqli->query($sql);
     if ($result->num_rows == 1){
         $row = $db->fetchRow();
         $this->lname = $row["lname"];
@@ -122,12 +124,12 @@ class User extends Model {
 
 
   
-
-
-  
   function deleteUser(){
-	  $sql="delete from user where ID=$this->ID;";
-	  if($this->db->query($sql) === true){
+    $dbh = DBh::getInstance();
+		$mysqli = $dbh->getConnection(); 
+    $sql="delete from user where ID=$this->ID;";
+    $result =	$mysqli->query($sql);
+	  if($result === true){
             echo "deletet successfully.";
         } else{
             echo "ERROR: Could not able to execute $sql. " . $conn->error;
