@@ -1,5 +1,6 @@
 <?php
   require_once(__ROOT__ . "model/Model.php");
+  
 ?>
 
 <?php
@@ -10,12 +11,11 @@ class product extends Model {
     private $cost;
     private $picture;
     private $type;
-    private $key;
    
 
   function __construct($id,$name="",$type="",$code="",$cost="",$picture="") {
     $this->id = $id;
-	    $this->db = $this->connect();
+	   // $this->db = $this->connect();
 
     if(""===$name){
       $this->readProduct($id);
@@ -68,17 +68,14 @@ class product extends Model {
     return $this->id;
   }
 
-  function details($id)
-{
-    $sql = "SELECT * FROM product where id='$id'";
-  
-    
-}
+ 
+
 
   function readProduct($id){
+    $dbh = DBh::getInstance();
+		$mysqli = $dbh->getConnection(); 
     $sql = "SELECT * FROM product where id=$id";
-    $db = $this->connect();
-    $result = $db->query($sql);
+		$result =	$mysqli->query($sql);
     if ($result->num_rows == 1){
         $row = $db->fetchRow();
         $this->code = $row["code"];
@@ -97,18 +94,8 @@ class product extends Model {
    
 
     }
-	
   }
-  function deleteProduct(){
-    $sql="delete from product where ID=$this->ID;";
-	  if($this->db->query($sql) === true){
-            echo "deletet successfully.";
-        } else{
-            echo "ERROR: Could not able to execute $sql. " . $conn->error;
-        }
-	}
 
-}
 
   
 
@@ -116,3 +103,4 @@ class product extends Model {
   
  
 	 
+}
