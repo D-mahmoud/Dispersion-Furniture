@@ -1,26 +1,49 @@
 <?php
   require_once("config.php");
-  //echo dirname("config.php");
-
-//echo $_SERVER['DOCUMENT_ROOT'];
+ 
 class DBh{
+    private $_connection;
+    private static $_instance; //The single instance
+	
     private $servername;
     private $username;
     private $password;
     private $dbname;
 
-    private $conn;
-    private $result;
-    public $sql;
+   // private $conn;
+    //private $result;
+    //public $sql;
 
     function __construct() {
-        $this->servername = DB_SERVER;
-        $this->username = DB_USER;
-        $this->password = DB_PASS;
-        $this->dbname = DB_DATABASE;
-        $this->connect();
-      }
-
+        $this->_connection = new mysqli(
+        $this->servername = DB_SERVER,
+        $this->username = DB_USER,
+        $this->password = DB_PASS,
+        $this->dbname = DB_DATABASE
+        // $this->connect();
+    );}
+    public static function getInstance() {
+        if(!self::$_instance) { 
+            // If no instance then make one
+            self::$_instance = new self();
+        }
+        return self::$_instance;
+       
+    
+    // Error handling
+    if(mysqli_connect_error()) {
+        trigger_error("Failed to conencto to MySQL: " . mysql_connect_error(),
+             E_USER_ERROR);
+    }
+}
+// Magic method clone is empty to prevent duplication of connection
+private function __clone() { }
+// Get mysqli connection
+public function getConnection() {
+    return $this->_connection;
+}
+}
+/*
     public function connect(){
         $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
         if ($this->conn->connect_error) {
@@ -55,24 +78,6 @@ class DBh{
 
 }
 
+*/
 
-// Create connection
-//$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-// if ($conn->connect_error) {
-//     die("Connection failed: " . $conn->connect_error);
-// }
-
-// $sql = "SELECT id, firstname, lastname FROM MyGuests";
-// $result = $conn->query($sql);
-
-// if ($result->num_rows > 0) {
-//     // output data of each row
-//     while($row = $result->fetch_assoc()) {
-//         echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-//     }
-// } else {
-//     echo "0 results";
-// }
-// $conn->close();
 ?>
