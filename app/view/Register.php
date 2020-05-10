@@ -89,14 +89,15 @@ $str='
         <div class="row justify-content-between">
             <div class="col-lg-6">
                 <div class="feature_part_tittle">
-                    <h3>Credibly innovate granular
-                    internal or organic sources
-                    whereas standards.</h3>
+                    <h3>Furniture: Art with an attitude..</h3>
                 </div>
             </div>
             <div class="col-lg-5">
                 <div class="feature_part_content">
-                    <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources. Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness.</p>
+                    <p>The best furniture you can find on the planet.
+                    Our name is the promise of standard and quality.
+                    Shop the luxury furniture you need.
+                    The expression of happiness.</p>
                 </div>
             </div>
         </div>
@@ -131,5 +132,5 @@ $str='
 return $str;
 
 }
-}
+}   
 ?>       

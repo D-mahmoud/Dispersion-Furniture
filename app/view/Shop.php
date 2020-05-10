@@ -112,17 +112,11 @@ public function viewcart(){
               <tr>';
               $i=3;
               foreach(array_slice($this->model->getCarts(), 0, $i)as $cart){
-                $str= $str .'<td>
-                 
-                   
-                  ';
+                $str= $str .'<td>';
                     $str .='<h3> <p>'.$cart->getproductname().'</p>';
-
-                    $str= $str .' 
-                  
-                </td>
+                     $str= $str .'</td>
                 <td>';
-                $str .='<h3> <p>'.$cart->getproductid().'</p>';
+                $str .='<h3> <p>'.$cart->getcost().'</p>';
                 
                 $str= $str .'</td>
                 <td>
@@ -136,12 +130,12 @@ public function viewcart(){
                   </div>
                 </td>
                 <td>';
-                $str .='<h3> <p>'.$cart->getcost().'</p>';
+                $str .='<h3> <p>'.$cart->getcost().'</p>   </td>
+              </tr>';
 
                } $str= $str .' 
                  
-                </td>
-              </tr>
+              
              
               <tr class="bottom_button">
                 <td>
@@ -196,7 +190,7 @@ public function viewcart(){
                       <i class="fa fa-caret-down" aria-hidden="true"></i>
                     </h6>
                     <select class="shipping_select">
-                      <option value="1">Bangladesh</option>
+                      <option value="1">Cairo</option>
                       <option value="2">India</option>
                       <option value="4">Pakistan</option>
                     </select>

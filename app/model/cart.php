@@ -20,7 +20,7 @@ class Cart extends Model {
 	    $this->db = $this->connect();
 
     if(""===$userid){
-      $this->readProduct($id);
+      $this->readCart($id);
     }else{
       $this->userid = $userid;
       $this->quantity = $quantity;
@@ -67,8 +67,7 @@ class Cart extends Model {
   function setcost() {
     return $this->cost = $cost;
   }
-  
-  
+
   function getpicture() {
     return $this->picture;
   }
@@ -80,7 +79,8 @@ class Cart extends Model {
     return $this->id;
   }
 
-  function readProduct($id){
+  function readCart($id){
+    $dbh = DBh::getInstance();
     $sql = "SELECT * FROM cart JOIN product WHERE cart.userid = $id and cart.productid = product.id";
     
     $db = $this->connect();
@@ -88,7 +88,6 @@ class Cart extends Model {
     if ($result->num_rows == 1){
         $row = $db->fetchRow();
         $this->quantity = $row["quantity"];
-        
         $this->productid = $row["productid"];
         $this->productname = $row["name"];
         $this->userid = $row["userid"];

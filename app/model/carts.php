@@ -30,6 +30,7 @@ class Carts extends Model {
 		$dbh = DBh::getInstance();
 		$mysqli = $dbh->getConnection(); 
 		$sql = "SELECT * FROM cart";
+		
 		$result =	$mysqli->query($sql);
 		if ($result->num_rows > 0){
 			return $result;
@@ -45,7 +46,7 @@ class Carts extends Model {
         $mysqli = $dbh->getConnection();   
 
       	
-		  $result =	$mysqli->query($sql);
+	$result =	$mysqli->query($sql);
       $sql = "INSERT INTO cart (id, productid,userid,quantity) VALUES ('$id', '$productid','$userid','$quantity')";
         if($result  === true){
             echo "Records inserted successfully.";
