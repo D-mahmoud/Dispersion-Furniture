@@ -44,12 +44,17 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
             if(isset($_POST['id']))	{
               $id=$_REQUEST["id"];
          
+              $dbh = DBh::getInstance();
+              $mysqli = $dbh->getConnection(); 
+
             $sql = "SELECT * FROM product where id='$id' ";
-	            $dbh = new Dbh();
-              $result = $dbh->query($sql);
+	            //$dbh = new Dbh();
+              $result =	$mysqli->query($sql);
               if ($result->num_rows == 1)
               {
-                $row = $dbh->fetchRow();
+                //$row = $dbh->fetchRow();
+                foreach ($result as $row ) {
+
                 ?> 
                    <div class="single_product_img">
                    <img src="<?php echo "../img/product/". $row["picture"];?>" class="img-fluid"></img>
@@ -70,7 +75,7 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
               <div class="add_to_cart">
                   <a href="#" class="btn_3">add to cart</a>
               </div>
-              <?php	}
+              <?php	}}
             }
             ?>
             </div>
