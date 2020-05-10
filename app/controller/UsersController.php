@@ -3,7 +3,9 @@
 require_once(__ROOT__ . "controller/Controller.php");
 
 class UsersController extends Controller{
+	
 	public function insert() {
+		
 		$fname = $_REQUEST['fname'];
 		$lname = $_REQUEST['lname'];
 		$username = $_REQUEST['username'];
@@ -24,6 +26,10 @@ public function login(){
 	$username = $_REQUEST['username'];
 	$password = $_REQUEST['password'];
 $this->model->login($username,$password);
+}
+public function deleteUser(){
+$id=$_REQUEST['id'];
+$this->model->deleteUser($id);
 }
 	
 }
