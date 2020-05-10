@@ -3,19 +3,28 @@ require_once(__ROOT__ . "view/View.php");
 class Shop extends View{
     public function output()
 
-    {$str="";
-        $i=3;
-        foreach(array_slice($this->model->getProducts() , 0, $i)as $product){
-            $str= $str . '<div class="col-lg-6 col-sm-6">';
-            $str .=' <div class="single_product_item">';
-            $str .='<img src=../img/product/' . $product->getpicture() . ' </img> ' ;
-            $str .='<h3> <p>'.$product->getCost().'</p>';
-            $str .='<a href="single-product.html">'.$product->getName().'</a> </h3> </div> </div>';
-          
-        }
+    
+    {
+        $str="";
+        $i=2;
+       # foreach(array_slice($this->model->getProducts() , 0, $i)as $product){
+
+      foreach($this->model->getProducts() as $product){
+             $str= $str . '<div class="col-lg-6 col-sm-6">';
+             $str .=' <div class="single_product_item">';
+             $str .='<img src=../img/product/' . $product->getpicture() . ' </img> ' ;
+             $str .='<h3> <p>'.$product->getCost().'EPG </p></h3>';
+            $str .='
+            <form  action="single-product copy.php" method="post">
+            <input type="hidden" name="id"  value='.$product->getID().'>
+            <button type="submit"  name = "details" class="btn_3" >'.$product->getName().'</button>  </div> </div>
+            </form> ';
+        # <form  action="single-product?action=details.php" method="post">
+
+        
+    }
     return $str;
     }
-   
 public function search(){
     $str='
     <form action="explore.php?action=search" method="post">
@@ -37,6 +46,35 @@ public function search_output(){
     }
   # $str=$str. $this->model->getProducts_search() ;
 return $str;
+}
+public function single_ptoduct()
+{$str="";
+    foreach($this->model->getproducts_details() as $product){      
+      $str=$str .' <div class="single_product_img">';
+      $str .='<img src=../img/product/' . $product->getpicture() . ' </img> 
+      </div>
+       <h3>'
+       .$product->getName().'</h3>
+    <p>This '.$product->getType().'name is'  .$product->getName().' its code number is'  .$product->getCode().'</p>
+  <div class="card_area">
+   <div class="product_count_area">
+       <p>Quantity</p>
+       <div class="product_count d-inline-block">
+           <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
+           <input class="product_count_item input-number" type="text" value="1" min="0" max="10">
+           <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
+       </div>
+       <p>' .$product->getCost().'EPG</p>
+   </div>
+ <div class="add_to_cart">
+     <a href="#" class="btn_3">add to cart</a>
+ </div>
+ <?php	}
+}';
+
+
+
+}
 }
 
     public function feature()
