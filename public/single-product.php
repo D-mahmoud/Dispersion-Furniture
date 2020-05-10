@@ -8,10 +8,8 @@ require_once(__ROOT__ . "view/Shop.php");
 $model = new Products();
 $controller = new ProductsController($model);
 $view = new Shop($controller, $model);
-if (isset($_GET['action']) && !empty($_GET['action'])) {
-  $controller->{$_GET['action']}();   
-  
-}
+
+
 
 ?>	
 <!doctype html>
@@ -40,44 +38,10 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
         </div>
         <div class="col-lg-8">
           <div class="single_product_text text-center">
-              <?php 
-            if(isset($_POST['id']))	{
-              $id=$_REQUEST["id"];
-         
-              $dbh = DBh::getInstance();
-              $mysqli = $dbh->getConnection(); 
-
-            $sql = "SELECT * FROM product where id='$id' ";
-	            //$dbh = new Dbh();
-              $result =	$mysqli->query($sql);
-              if ($result->num_rows == 1)
-              {
-                //$row = $dbh->fetchRow();
-                foreach ($result as $row ) {
-
-                ?> 
-                   <div class="single_product_img">
-                   <img src="<?php echo "../img/product/". $row["picture"];?>" class="img-fluid"></img>
-                    </div>
-                    <h3>
-	          <?php echo $row["name"];?></h3>
-	             <p>This <?php echo $row["type"];?> name is <?php echo $row["name"];?> it's code number is  <?php echo $row["code"];?></p>
-               <div class="card_area">
-                <div class="product_count_area">
-                    <p>Quantity</p>
-                    <div class="product_count d-inline-block">
-                        <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
-                        <input class="product_count_item input-number" type="text" value="1" min="0" max="10">
-                        <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
-                    </div>
-                    <p><?php echo $row["cost"];?>EPG</p>
-                </div>
-              <div class="add_to_cart">
-                  <a href="#" class="btn_3">add to cart</a>
-              </div>
-              <?php	}}
-            }
-            ?>
+            <!--img-->
+            <?php
+           echo $view->single_ptoduct();
+?>
             </div>
           </div>
         </div>
