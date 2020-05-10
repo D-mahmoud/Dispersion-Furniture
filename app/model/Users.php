@@ -29,9 +29,8 @@ class Users extends Model {
 	function readUsers(){
 		$dbh = DBh::getInstance();
 		$mysqli = $dbh->getConnection(); 
-		$sql = "SELECT * FROM user";
+		$sql = "SELECT * FROM user Where role='user'";
 		$result =	$mysqli->query($sql);
-	//	$result = $this->dbh->query($sql);
 		if ($result->num_rows > 0){
 			return $result;
 		}
@@ -87,6 +86,22 @@ class Users extends Model {
 				}  
 			
 			 
+		   }
+		   function deleteUser($id){
+		    $dbh = DBh::getInstance();
+     $mysqli = $dbh->getConnection();  
+      $sql=" DELETE FROM user WHERE  id='$id'";
+       
+        $result =	$mysqli->query($sql);
+
+          if($result  == true){
+                echo "deleted successfully.";
+                     return $result;  
+            } 
+            else{
+                echo "ERROR: Could not able to execute $sql. " .  $dbh->getConnection()->error;
+            }
+		   
 		   }
 			 
 		 }  
