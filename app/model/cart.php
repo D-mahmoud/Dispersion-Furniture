@@ -41,10 +41,12 @@ class Cart extends Model {
   } 
   function getproductname() {
     return $this->productname;
+  
   }
  
   function setproductname($productname) {
     return $this->productname = $productname;
+
   } 
  
    function getquantity() {
