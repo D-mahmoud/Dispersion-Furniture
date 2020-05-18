@@ -45,10 +45,11 @@ class Users extends Model {
         $mysqli = $dbh->getConnection();   
 
       	$password=md5($password);
-		  $result =	$mysqli->query($sql);
 
 	  $sql = "INSERT INTO user (fname, lname,email,number,address,password,username,role) VALUES ('$fname', '$lname','$email','$number','$address','$password','$username','$role')";
-        if( $result === true){
+       		  $result =	$mysqli->query($sql);
+
+	    if( $result === true){
             echo "Records inserted successfully.";
             $this->fillArray();
         } else{
