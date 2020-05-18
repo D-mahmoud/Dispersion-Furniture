@@ -57,8 +57,8 @@ class Register extends View{
  return $str;
 }
 public function login(){
-       #  $str='<form action="login.php?action=login" method="post">
-      $str='<form action="login.php" method="post">
+         $str='<form action="login.php?action=login" method="post">
+     
                                 <div class="col-md-12 form-group p_star">
                                     <input type="text" class="form-control" id="username" name="username" value=""
                                         placeholder="Username" required="required">
