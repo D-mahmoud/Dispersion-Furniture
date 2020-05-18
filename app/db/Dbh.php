@@ -9,13 +9,13 @@ class DBh{
     private $username;
     private $password;
     private $dbname;
-
-   // private $conn;
-    //private $result;
-    //public $sql;
-
+    #trials start
+    private $_count=0;
+    private $_mysqli,$_query,$_results=array(); 
+   #trial end
     function __construct() {
-        $this->_connection = new mysqli(
+        #$this->_connection = new mysqli(
+         $this->_mysqli = new mysqli(
         $this->servername = DB_SERVER,
         $this->username = DB_USER,
         $this->password = DB_PASS,
@@ -25,7 +25,8 @@ class DBh{
     public static function getInstance() {
         if(!self::$_instance) { 
             // If no instance then make one
-            self::$_instance = new self();
+          //  self::$_instance = new self();
+          self::$_instance = new DBh();
         }
         return self::$_instance;
        
@@ -40,44 +41,29 @@ class DBh{
 private function __clone() { }
 // Get mysqli connection
 public function getConnection() {
-    return $this->_connection;
+    #return $this->_connection;
+    return $this->_mysqli;
+
 }
-}
-/*
-    public function connect(){
-        $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
-        if ($this->conn->connect_error) {
-            die("Connection failed: " . $this->conn->connect_error);
+#trial start
+public function query($sql){
+    if($this->_query=$this->_mysqli->query($sql)){
+        while($row=$this->_query->fetch_object()){
+            $this->_results[] =$row;
+
         }
-        return $this->conn;
+        $this->_count=$this->_query->num_rows;
     }
-
-    public function getConn(){
-        return $this->conn;
-    }
-
-    function query($sql){
-        if (!empty($sql)){
-                $this->sql = $sql;
-                $this->result = $this->conn->query($sql);
-
-                return $this->result;
-        }else{
-                return false;
-        }
+    return $this;
+}
+public function count(){
+    return $this->_count;
+}
+public function results(){
+    return $this->_results;
+}
+#trial end
 }
 
-    function fetchRow($result=""){
-            if (empty($result)){ $result = $this->result; }
-            return $result->fetch_assoc();
-    }
-
-    function __destruct(){
-        $this->conn->close();
-    }
-
-}
-
-*/
 
 ?>
