@@ -65,29 +65,31 @@ class Users extends Model {
 		$dbh = DBh::getInstance();
 		$mysqli = $dbh->getConnection(); 
 		$password=md5($password);
-			 $sql = "SELECT ID FROM user where username='$username' and password='$password'";
-			 $result =	$mysqli->query($sql);
-			 if($result== true){
-			 if ($result->num_rows ==1){
-					 //$row = $result ->fetchRow();
-					 foreach($row as $row){
-						$_SESSION["ID"]=$row["ID"];
-						$_SESSION["username"]="$username";
-					
-				 }
-				 header("Location:explore.php");}
-			 
-					
-			else {
-				echo "<script type='text/javascript'>alert(\"Wrong Username or Password please re-try\")
-				location='login.php';</script>";
-			}
-				}else{
-					echo "ERROR: Could not able to execute $sql. " .  $this->dbh->getConn()->error;
-				}  
-			
+		$select= DBh::getInstance()->query("SELECT * FROM user where username='$username' and password='$password'");
+        if($select== true)
+        {          
+            if ($select->count())
+        {
+            foreach($select->results()as $row)
+            {
+            $row = get_object_vars($row);
+            
+       $_SESSION["ID"]=$row["ID"];
+       echo   $_SESSION["ID"];
+		$_SESSION["username"]=$row["username"];
+		echo   $_SESSION["username"];
+      // header("Location:explore.php");
+            }
+        }
+        else {
+            echo "<script type='text/javascript'>alert(\"Wrong Username or Password please re-try\")
+            location='login.php';</script>";
+        }   
+}
+
 			 
 		   }
+			 
 		   function deleteUser($id){
 		    $dbh = DBh::getInstance();
      $mysqli = $dbh->getConnection();  
