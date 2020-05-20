@@ -40,14 +40,18 @@ class Users extends Model {
 	}
 
 	
-    function insertUser($fname,$lname,$email,$number, $address,$password,$username,$role){
+   function insertUser($fname,$lname,$email,$number, $address,$password,$username){
 		$dbh = DBh::getInstance();
         $mysqli = $dbh->getConnection();   
 
       	$password=md5($password);
+if ($_SESSION["role"]="" ||$_SESSION["role"]="customer")
+{
+$role="customer";
+}
 
 	  $sql = "INSERT INTO user (fname, lname,email,number,address,password,username,role) VALUES ('$fname', '$lname','$email','$number','$address','$password','$username','$role')";
-       		  $result =	$mysqli->query($sql);
+	 	  $result =	$mysqli->query($sql);
 
 	    if( $result === true){
             echo "Records inserted successfully.";
