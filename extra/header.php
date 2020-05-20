@@ -67,7 +67,7 @@ session_start();
                                         pages
                                     </a>
                                     <div class='dropdown-menu' aria-labelledby='navbarDropdown_2'>
-                                        <a class='dropdown-item' href='../login.php'> 
+                                        <a class='dropdown-item' href='../public/login.php'> 
                                             login
                                             
                                         </a>
