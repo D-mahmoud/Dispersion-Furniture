@@ -25,12 +25,14 @@ if($password==$confirm_password){
 public function login(){
 	$username = $_REQUEST['username'];
 	$password = $_REQUEST['password'];
-$this->model->login($username,$password);
-}
-	public function login_employee(){
-	$username = $_REQUEST['username'];
-	$password = $_REQUEST['password'];
-$this->model->login_employee($username,$password);
+	if(isset($_POST["login_employee"]))
+	{
+		$this->model->login_employee($username,$password);
+	}
+	if(isset($_POST["login"]))
+	{
+		$this->model->login($username,$password);
+	}
 }
 public function deleteUser(){
 $id=$_REQUEST['id'];
