@@ -27,6 +27,11 @@ public function login(){
 	$password = $_REQUEST['password'];
 $this->model->login($username,$password);
 }
+	public function login_employee(){
+	$username = $_REQUEST['username'];
+	$password = $_REQUEST['password'];
+$this->model->login_employee($username,$password);
+}
 public function deleteUser(){
 $id=$_REQUEST['id'];
 $this->model->deleteUser($id);
