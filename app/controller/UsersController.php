@@ -12,11 +12,11 @@ class UsersController extends Controller{
 		$email = $_REQUEST['email'];
 		$number = $_REQUEST['number'];
 		$address = $_REQUEST['add'];
-		$role=$_REQUEST['role'];
+		//$role=$_REQUEST['role'];
 		$password = $_REQUEST['password'];
 		$confirm_password= $_REQUEST['confirm_password'];
 if($password==$confirm_password){
-		$this->model->insertUser($fname,$lname,$email,$number, $address,$password,$username,$role);
+		$this->model->insertUser($fname,$lname,$email,$number, $address,$password,$username);
 	}
 	else{
 		$this->model->error();
