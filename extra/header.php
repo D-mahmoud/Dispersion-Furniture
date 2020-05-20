@@ -102,13 +102,16 @@ session_start();
                                              </div>
                                              </li>
                                              <li class='nav-item'>
-                                    <a class='nav-link' href='../Track_Order.php'>Track Order</a>
-                                        </li>
+                                             <a class='nav-link' href='../Track_Order.php'>Track Order</a>
+                                             </li>
+                                             <li class='nav-item'>
+                                             <a class='nav-link' href='../public/employees'>Employees </a>
+                                             </li>
                                              <li class='nav-item'>
                                              <a class='nav-link' href='index.php?action=signOut'>SignOut</a>
-                                         </li>";
+                                             </li>";
                                      }
-                                    else if(($_SESSION['role']) == 'employee')  {
+                                    else   {
                                                 echo"<ul class='navbar-nav'>
                               
                                              <li class='nav-item dropdown'>
