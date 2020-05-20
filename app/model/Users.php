@@ -76,15 +76,22 @@ $role="customer";
         {
             foreach($select->results()as $row)
             {
+				
             $row = get_object_vars($row);
-            
+            if ( $row["role"]=="customer")
+				{
        $_SESSION["ID"]=$row["ID"];
-       echo   $_SESSION["ID"];
 		$_SESSION["username"]=$row["username"];
-		echo   $_SESSION["username"];
-      // header("Location:explore.php");
-            }
-        }
+		$_SESSION["role"]=$row["role"];
+
+       header("Location:explore.php");
+            }else {
+				header("Location:login_managment.php");
+			}
+		}
+		
+	}
+		
         else {
             echo "<script type='text/javascript'>alert(\"Wrong Username or Password please re-try\")
             location='login.php';</script>";
