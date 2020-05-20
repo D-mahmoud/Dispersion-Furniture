@@ -77,7 +77,30 @@ public function login(){
                             </form>';
     return $str;
 }
+public function login_employee(){
+    $str='<form action="login.php?action=login" method="post">
+                             <div class="col-md-12 form-group p_star">
+                                 <input type="text" class="form-control" id="username" name="username" value=""
+                                     placeholder="Username" required="required">
+                             </div>
+                             <div class="col-md-12 form-group p_star">
+                                 <input type="password" class="form-control" id="password" name="password" value=""
+                                     placeholder="Password" required="required">
+                             </div>
+                             <div class="col-md-12 form-group">
+                                 <div class="creat_account d-flex align-items-center">
+                                     <input type="checkbox" id="f-option" name="selector">
+                                     <label for="f-option">Remember me</label>
+                                 </div>
+                                 <div class="col-md-12 form-group">
 
+                                 <input type="submit" name="login_employee" ></div>
+
+                                 <a class="lost_pass" href="login.php">Are you customer?<br>CLICK HERE</a>
+                             </div>
+                         </form>';
+ return $str;
+}
 public function feature()
 {
 $str='
