@@ -95,7 +95,7 @@ $role="customer";
 			
 			else {
 				echo "<script type='text/javascript'>alert(\"Wrong Username or Password please re-try\")
-				location='login.php';</script>";
+				location='login_managment.php';</script>";
 			}   
 	}
 	
