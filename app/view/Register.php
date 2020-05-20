@@ -45,11 +45,7 @@ class Register extends View{
                                     
 										<input type="password" class="form-control" id="confirm_password" name="confirm_password" value=""
                                         required="required" placeholder="Confirm your Password">
-                                        </div>
-                                        <div class="col-md-12 form-group p_star">
-                                    <input   type="hidden" class="form-control" id="role" name="role" value=""
-                                        placeholder="Role">
-                                </div>
+                                       
                                 <div class="col-md-12 form-group">
                                     
                                 <input type="submit" /></div>
