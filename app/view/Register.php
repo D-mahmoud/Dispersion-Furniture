@@ -72,7 +72,7 @@ public function login(){
 
                                     <input type="submit" ></div>
 
-                                    <a class="lost_pass" href="#">forget password?</a>
+                                    <a class="lost_pass" href="login_managment.php">Are you an employee?<br>CLICK HERE</a>
                                 </div>
                             </form>';
     return $str;
