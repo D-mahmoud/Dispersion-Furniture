@@ -40,27 +40,30 @@ class Users extends Model {
 	}
 
 	
-   function insertUser($fname,$lname,$email,$number, $address,$password,$username){
+  
+    function insertUser($fname,$lname,$email,$number, $address,$password,$username,$role){
 		$dbh = DBh::getInstance();
         $mysqli = $dbh->getConnection();   
 
       	$password=md5($password);
-if ($_SESSION["role"]="" ||$_SESSION["role"]="customer")
-{
-$role="customer";
-}
-
+		if ($role!="")
+		{
 	  $sql = "INSERT INTO user (fname, lname,email,number,address,password,username,role) VALUES ('$fname', '$lname','$email','$number','$address','$password','$username','$role')";
-	 	  $result =	$mysqli->query($sql);
-
-	    if( $result === true){
+	  $result =	$mysqli->query($sql);
+  
+	  if( $result === true){
             echo "Records inserted successfully.";
             $this->fillArray();
         } else{
             echo "ERROR: Could not able to execute $sql. " .  $this->dbh->getConn()->error;
         }  
-      }
-    
+	  }
+	else {
+		echo "<script type='text/javascript'>alert(\"Please enter admin or employee\")
+            location='signup.php';</script>";
+	}
+	}
+	
       function error(){
         echo"Sorry the passwords do not match please re-confirm again";
 	  }
