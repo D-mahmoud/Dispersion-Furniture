@@ -40,56 +40,107 @@ class Users extends Model {
 	}
 
 	
+  
     function insertUser($fname,$lname,$email,$number, $address,$password,$username,$role){
 		$dbh = DBh::getInstance();
         $mysqli = $dbh->getConnection();   
 
-		  $password=md5($password);
-		  
-		 
-
+      	$password=md5($password);
+		if ($role!="")
+		{
 	  $sql = "INSERT INTO user (fname, lname,email,number,address,password,username,role) VALUES ('$fname', '$lname','$email','$number','$address','$password','$username','$role')";
 	  $result =	$mysqli->query($sql);
-	   if( $result === true){
-
+  
+	  if( $result === true){
             echo "Records inserted successfully.";
             $this->fillArray();
         } else{
             echo "ERROR: Could not able to execute $sql. " .  $this->dbh->getConn()->error;
         }  
-      }
-    
+	  }
+	else {
+		echo "<script type='text/javascript'>alert(\"Please enter admin or employee\")
+            location='signup.php';</script>";
+	}
+	}
+	
       function error(){
         echo"Sorry the passwords do not match please re-confirm again";
 	  }
 	  
+			   function login_employee($username,$password){
+			$dbh = DBh::getInstance();
+			$mysqli = $dbh->getConnection(); 
+			$password=md5($password);
+			$select= DBh::getInstance()->query("SELECT * FROM user where username='$username' and password='$password'");
+			if($select== true)
+			{         
+				if ($select->count())
+			{
+				
+				foreach($select->results()as $row)
+				{
+					
+				$row = get_object_vars($row);
+				if ( $row["role"]=="customer")
+					{header("Location:login.php");
+		  
+				}else {
+					$_SESSION["ID"]=$row["ID"];
+					$_SESSION["username"]=$row["username"];
+					$_SESSION["role"]=$row["role"];
+			
+				   header("Location:employees.php");
+				}
+			}
+			
+		}
+			
+			else {
+				echo "<script type='text/javascript'>alert(\"Wrong Username or Password please re-try\")
+				location='login_managment.php';</script>";
+			}   
+	}
+	
+				 
+			   }
+
 	function login($username,$password){
 		$dbh = DBh::getInstance();
 		$mysqli = $dbh->getConnection(); 
 		$password=md5($password);
-			 $sql = "SELECT ID FROM user where username='$username' and password='$password'";
-			 $result =	$mysqli->query($sql);
-			 if($result== true){
-			 if ($result->num_rows ==1){
-					 //$row = $result ->fetchRow();
-					 foreach($row as $row){
-						$_SESSION["ID"]=$row["ID"];
-						$_SESSION["username"]="$username";
-					
-				 }
-				 header("Location:explore.php");}
-			 
-					
-			else {
-				echo "<script type='text/javascript'>alert(\"Wrong Username or Password please re-try\")
-				location='login.php';</script>";
+		$select= DBh::getInstance()->query("SELECT * FROM user where username='$username' and password='$password'");
+        if($select== true)
+        {          
+            if ($select->count())
+        {
+            foreach($select->results()as $row)
+            {
+				
+            $row = get_object_vars($row);
+            if ( $row["role"]=="customer")
+				{
+       $_SESSION["ID"]=$row["ID"];
+		$_SESSION["username"]=$row["username"];
+		$_SESSION["role"]=$row["role"];
+
+       header("Location:explore.php");
+            }else {
+				header("Location:login_managment.php");
 			}
-				}else{
-					echo "ERROR: Could not able to execute $sql. " .  $this->dbh->getConn()->error;
-				}  
-			
+		}
+		
+	}
+		
+        else {
+            echo "<script type='text/javascript'>alert(\"Wrong Username or Password please re-try\")
+            location='login.php';</script>";
+        }   
+}
+
 			 
 		   }
+			 
 		   function deleteUser($id){
 		    $dbh = DBh::getInstance();
      $mysqli = $dbh->getConnection();  

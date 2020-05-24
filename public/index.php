@@ -14,6 +14,7 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
    switch($_GET['action']){
     case 'signOut':
             session_destroy();
+            header("Location:index.php");
 
     break;
 
@@ -45,7 +46,15 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
                                 Happiness.
                                     Home.</h1>
                             <p>Our name is the promise of standard and quality.</p>
-                            <a href="login.php" class="btn_1">shop now</a>
+                            <?php if (empty($_SESSION["ID"])){?>
+                          
+                                <a href="login.php" class="btn_1">shop now</a>
+
+                                <?php }
+                               else{?>
+                            <a href="explore.php" class="btn_1">shop now</a>
+
+                            <?php }?>
                             <a href="explore.php" class="btn_1">Explore</a>
 
                         </div>
