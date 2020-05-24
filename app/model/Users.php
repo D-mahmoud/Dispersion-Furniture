@@ -44,11 +44,14 @@ class Users extends Model {
 		$dbh = DBh::getInstance();
         $mysqli = $dbh->getConnection();   
 
-      	$password=md5($password);
-		  $result =	$mysqli->query($sql);
+		  $password=md5($password);
+		  
+		 
 
 	  $sql = "INSERT INTO user (fname, lname,email,number,address,password,username,role) VALUES ('$fname', '$lname','$email','$number','$address','$password','$username','$role')";
-        if( $result === true){
+	  $result =	$mysqli->query($sql);
+	   if( $result === true){
+
             echo "Records inserted successfully.";
             $this->fillArray();
         } else{
@@ -91,7 +94,7 @@ class Users extends Model {
 		    $dbh = DBh::getInstance();
      $mysqli = $dbh->getConnection();  
       $sql=" DELETE FROM user WHERE  id='$id'";
-       
+    
         $result =	$mysqli->query($sql);
 
           if($result  == true){

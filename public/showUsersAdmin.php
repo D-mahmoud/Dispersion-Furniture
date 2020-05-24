@@ -60,18 +60,7 @@ $view = new usersAdmin($controller, $model);
                         
                     </div>
                 </div>
-                <div class="col-md-8">
-                    <div class="product_list">
-                        <div class="row">
-                        <?php 
-                            
-                                echo $view->output();
-                            ?>
-                         </div>
-                      
-                    </div>
-                </div>
-            </div>
+               
         </div>
     </section>
     <!-- product list part end-->
