@@ -46,6 +46,55 @@ public function view_employee()
     }
     return $str;
 }
+	public function customer_message() 
+{ $str="";
+    foreach($this->model->getMessages() as $admin)
+    {
+    $str= $str . '<tr>
+    '.
+      '<td> ' . "   . ".$admin->getID() . " </td> ".
+      '<td> ' .  $admin->getcust_id() ."</td> ".
+      '<td> ' .  $admin->getdate()  . " </td> ".
+      '<td> ' .$admin->getmessage(). " </td> ".
+      '<td> ' .'
+      <form  action="Q&A?action=ignore" method="post">
+      <input type="hidden" name="id"  value='.$admin->getID().'>
+     <button type="submit"  name = "ignore" class="btn_3" >Ignore</button></form>'.
+     ' 
+      <form  action="Q&A?action=answer" method="get"  id="answer">
+      <input type="hidden" name="id"  value='.$admin->getID().'>
+      <button type="submit" id="answer" name = "answer" class="btn_3" >Answer</button>
+      </form>'.
+
+      ' <form  action="Q&A?action=view" method="get">
+      <input type="hidden" name="id"  value='.$admin->getID().'>
+      <button type="submit"  name = "view" class="btn_3" >view Reply</button>'.'</form> '." </td> ".
+
+      '</tr>';
+      }
+      return $str;
+
+}
+public function user_mess()
+   {
+    $str='<form class="form-contact contact_form" action="mess.php?action=send" method="post" 
+    novalidate="novalidate">
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+
+          <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9"
+            placeholder="Enter Message"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt-3">
+      <input type="submit" class="btn_3 button-contactForm">
+    </div>
+  </form>';
+  return $str;
+
+   }
 public function signup(){
     $str='<form action="employees.php?action=insert" method="post">
     <div class="col-md-12 form-group p_star">
