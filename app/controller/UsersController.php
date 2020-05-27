@@ -60,6 +60,19 @@ public function deleteUser(){
 $id=$_REQUEST['id'];
 $this->model->deleteUser($id);
 }
-	
+
+	public function ignore(){
+
+	$id=$_REQUEST['id'];
+	$this->model->ignore($id);
+
+}
+
+public function send(){
+$message=$_REQUEST['message'];
+$id=$_SESSION["ID"];
+$this->model->send($message,$id);
+
+}
 }
 ?>
