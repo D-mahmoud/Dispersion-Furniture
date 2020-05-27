@@ -80,6 +80,11 @@ session_start();
                                           <li class='nav-item'>
                                     <a class='nav-link' href='../Track_Order.php'>Track Order</a>
                                         </li>
+					 <li class='nav-item'>
+                                    
+                                        <a class='nav-link' href='../public/mess.php'> Messages</a>
+                                                             
+                                    </li>
                                              <li class='nav-item'>
                                              <a class='nav-link' href='index.php?action=signOut'>SignOut</a>
                                          </li>
