@@ -112,6 +112,11 @@ session_start();
                                              <li class='nav-item'>
                                              <a class='nav-link' href='../public/employees'>Employees </a>
                                              </li>
+					      <li class='nav-item'>
+                                    
+                                             <a class='nav-link' href='../public/Q&A.php'> Messages</a>
+                                                                  
+                                         </li>
                                              <li class='nav-item'>
                                              <a class='nav-link' href='index.php?action=signOut'>SignOut</a>
                                              </li>";
@@ -130,7 +135,6 @@ session_start();
 										<a class='dropdown-item' href='../Track_Order._employee.php'>Track Order</a>
 									    <a class='dropdown-item' href='../Update_Product.php'> Update Products</a>
 						             	<a class='dropdown-item' href='../View_feedback.php'>View Feedback</a>
-										<a class='dropdown-item'href='../Message.php'>Answer Messages</a>
 
                                         
                                      </div>
@@ -138,6 +142,11 @@ session_start();
                                          <li class='nav-item'>
                                     <a class='nav-link' href='../Track_Order.php'>Track Order</a>
                                         </li>
+					 <li class='nav-item'>
+                                    
+                                             <a class='nav-link' href='../public/Q&A.php'> Messages</a>
+                                                                  
+                                         </li>
                                     
                                  <li class='nav-item'>
                                     <a class='nav-link' href='index.php?action=signOut'>SignOut</a>
