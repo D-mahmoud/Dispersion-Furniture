@@ -29,7 +29,7 @@ class Messages extends Model {
 	function readMessages(){
 		$dbh = DBh::getInstance();
 		$mysqli = $dbh->getConnection(); 
-		$sql = "SELECT * FROM messages ";
+		$sql = "SELECT * FROM messages ORDER BY ID  ASC ";
 		$result =	$mysqli->query($sql);
 		if ($result->num_rows > 0){
 			return $result;
