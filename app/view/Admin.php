@@ -50,6 +50,7 @@ public function view_employee()
 { $str="";
     foreach($this->model->getMessages() as $admin)
     {
+	    if( $admin->getemp_id()==0){
     $str= $str . '<tr>
     '.
       '<td> ' . "   . ".$admin->getID() . " </td> ".
@@ -72,6 +73,7 @@ public function view_employee()
 
       '</tr>';
       }
+    }
       return $str;
 
 }
