@@ -29,7 +29,7 @@ class Messages extends Model {
 	function readMessages(){
 		$dbh = DBh::getInstance();
 		$mysqli = $dbh->getConnection(); 
-		$sql = "SELECT * FROM messages where emp_id IS NULL  ";
+		$sql = "SELECT * FROM messages ";
 		$result =	$mysqli->query($sql);
 		if ($result->num_rows > 0){
 			return $result;
