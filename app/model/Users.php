@@ -29,7 +29,7 @@ class Users extends Model {
 	function readUsers(){
 		$dbh = DBh::getInstance();
 		$mysqli = $dbh->getConnection(); 
-		$sql = "SELECT * FROM user Where role='user'";
+		$sql = "SELECT * FROM user ";
 		$result =	$mysqli->query($sql);
 		if ($result->num_rows > 0){
 			return $result;
