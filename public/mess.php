@@ -29,12 +29,29 @@ include "../extra/header.php" ;
     </section>
     <!-- breadcrumb part end-->
 
-    <div class="row">
-        <div class="col-12">
-          <h2 class="contact-title"></h2>
-        </div>
-        <div class="col-lg-8">
-          <?php  echo $view->user_mess(); ?>
+   
+    <div class="container">
+   
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="order_details_iner">
+		  <br>
+            <h3>Messages</h3>
+            <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col" >Message ID</th>
+                  <th scope="col">Date Sent</th>
+				   <th scope="col">Messsage</th>
+				   <th scope="col">BY</th>
+                </tr>
+              </thead>
+              <tbody>
+          <?php  echo $view->message($id); ?>
+          </tbody>
+          </table>
+          <?php  echo $view->output(); ?>
+
         </div>
      </div>
 
