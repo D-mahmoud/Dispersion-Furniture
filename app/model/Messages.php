@@ -68,6 +68,21 @@ function send($message,$id){
         echo "ERROR: Could not able to execute $sql. " .  $dbh->getConnection()->error;
     }
 }
+	function send_mess($message,$emp_id,$cust_id,$mess_id){
+    $dbh = DBh::getInstance();
+    $mysqli = $dbh->getConnection(); 
+    $d= date("Y-m-d");
+    $sql = "INSERT INTO messages (cust_id,message,Date,emp_id,reply_on) VALUES ('  $mess_id','$message','$d','$emp_id','$cust_id')";
+    $result =$mysqli->query($sql);
+    if($result  == true)
+    {
+        echo "<script type='text/javascript'>alert(\"Message sent successfully .. Continue answering messages\")
+       </script>";
+    }
+    else{
+        echo "ERROR: Could not able to execute $sql. " .  $dbh->getConnection()->error;
+    }
+}
 
 }  
 	
