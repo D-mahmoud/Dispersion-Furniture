@@ -62,10 +62,10 @@ public function view_employee()
       <input type="hidden" name="id"  value='.$admin->getID().'>
      <button type="submit"  name = "ignore" class="btn_3" >Ignore</button></form>'.
      ' 
-      <form  action="answer.php" method="post"  id="answer">
-       <input type="hidden" name="id"  id="id" value='.$admin->getID().'>
+      <form  action="answer.php" method="post"  >
+      <input type="hidden" name="id"  id="id" value='.$admin->getID().'>
       <input type="hidden" name="customer"  id="customer" value='.$admin->getcust_id().'>
-      <button type="submit" class="btn_3" name="shahd">Answer</button>
+      <button type="submit" class="btn_3" name="submit">Answer</button>
       </form>'." </td> ".
 
       '</tr>';
@@ -73,18 +73,26 @@ public function view_employee()
     }
       return $str;
 }
+public function show ($id){
+    foreach($this->model->getMessages() as $admin)
+{
+    if ($admin->getID()==$id){
+    $str=  $admin->getmessage();
+    }
+}
+return $str;
 
+}
 	
 public function reply($id,$customer){
     $str="";
-    foreach($this->model->getMessages() as $admin)
+   foreach($this->model->getMessages() as $admin)
     {
-        if( $admin->getcust_id()==$customer || $admin->getreply_on()==$id){
-            if ($admin->getemp_id()!=""){
+        if( $admin->getreply_on()==$id){
+           
         $str= $str . '<tr>
         '.
           '<td> ' . ". ".$admin->getID() . " </td> ".
-          '<td> ' .  $admin->getcust_id() ."</td> ".
           '<td> ' .  $admin->getdate()  . " </td> ".
           '<td> ' .$admin->getmessage(). " </td> ".
           '<td> ' ."Employer:".$admin->getemp_id(). " </td> ".
@@ -92,25 +100,26 @@ public function reply($id,$customer){
 
           '</tr>';
           
-            }
-            else{
-                $str= $str . '<tr>
-        '.
-          '<td> ' . ". ".$admin->getID() . " </td> ".
-          '<td> ' .  $admin->getcust_id() ."</td> ".
-          '<td> ' .  $admin->getdate()  . " </td> ".
-          '<td> ' .$admin->getmessage(). " </td> ".
-          '<td> ' ." This is the customer message "." </td> ".
-
-
-          '</tr>';
-          
-            }
     }
 }
       return $str;
 
 }
+	
+public function write($x,$id)
+   {
+$str= " <form  action='Q&A?action=send_mess' method='post'>
+    <div class='mt-10'>
+    <textarea class='single-textarea' name ='message' placeholder='Write here' onfocus='this.placeholder = '''
+    onblur='this.placeholder = 'Message'' required></textarea>
+    </div> 
+    <input type='hidden' name='x' id='x' value=$x>
+    <input type='hidden' name='id' id='id' value=$id>
+    <button type='submit' class='btn_3' >Send Reply</button>  
+    </form> ";
+return $str;
+   }
+	
 public function signup(){
     $str='<form action="employees.php?action=insert" method="post">
     <div class="col-md-12 form-group p_star">
