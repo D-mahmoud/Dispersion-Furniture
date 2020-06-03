@@ -74,5 +74,14 @@ $id=$_SESSION["ID"];
 $this->model->send($message,$id);
 
 }
+	
+	public function send_mess(){
+	$message=$_REQUEST['message'];
+	$emp_id=$_SESSION["ID"];
+	$cust_id=$_REQUEST["x"];
+	$mess_id=$_REQUEST["id"];
+	$this->model->send_mess($message,$emp_id,$cust_id,$mess_id);
+	
+	}
 }
 ?>
