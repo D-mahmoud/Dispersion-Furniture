@@ -133,7 +133,7 @@ return $str;
         <input type="hidden" name="id_app"  value='.$admin->getorder_id().'>
        <button type="submit"  name = "app" class="btn_3" >Approve</button></form>
 
-        <form  action="request?action=dissaprove" method="post">
+        <form  action="request?action=disaprove" method="post">
         <input type="hidden" name="id_dis"  value='.$admin->getorder_id().'>
        <button type="submit"  name = "dis" class="btn_3" >Disapprove</button></form>'.
         
