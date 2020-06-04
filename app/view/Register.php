@@ -5,10 +5,7 @@
 require_once(__ROOT__ . "view/View.php");
 class Register extends View{
 	public function output(){
-		$str="";
-		$str.="<h5>Welcome ".$this->model->getUsername()."</h5>";
 		
-		return $str;
 	}
        public function signup(){
         $str='<form action="login.php?action=insert" method="post">
@@ -45,16 +42,17 @@ class Register extends View{
                                     
 										<input type="password" class="form-control" id="confirm_password" name="confirm_password" value=""
                                         required="required" placeholder="Confirm your Password">
+                                        </div>
                                        
                                 <div class="col-md-12 form-group">
                                     
                                 <input type="submit" /></div>
                                     </form>';
  return $str;
+ 
 }
 public function login(){
-         $str='<form action="login.php?action=login" method="post">
-     
+       $str='<form action="login.php?action=login" method="post">
                                 <div class="col-md-12 form-group p_star">
                                     <input type="text" class="form-control" id="username" name="username" value=""
                                         placeholder="Username" required="required">
@@ -70,13 +68,14 @@ public function login(){
                                     </div>
                                     <div class="col-md-12 form-group">
 
-                                    <input type="submit" ></div>
+                                    <input type="submit" name="login" ></div>
 
                                     <a class="lost_pass" href="login_managment.php">Are you an employee?<br>CLICK HERE</a>
                                 </div>
                             </form>';
     return $str;
 }
+
 public function login_employee(){
     $str='<form action="login.php?action=login" method="post">
                              <div class="col-md-12 form-group p_star">
@@ -101,6 +100,7 @@ public function login_employee(){
                          </form>';
  return $str;
 }
+
 public function feature()
 {
 $str='
@@ -109,15 +109,14 @@ $str='
         <div class="row justify-content-between">
             <div class="col-lg-6">
                 <div class="feature_part_tittle">
-                    <h3>Furniture: Art with an attitude..</h3>
+                    <h3>Credibly innovate granular
+                    internal or organic sources
+                    whereas standards.</h3>
                 </div>
             </div>
             <div class="col-lg-5">
                 <div class="feature_part_content">
-                    <p>The best furniture you can find on the planet.
-                    Our name is the promise of standard and quality.
-                    Shop the luxury furniture you need.
-                    The expression of happiness.</p>
+                    <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources. Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness.</p>
                 </div>
             </div>
         </div>
@@ -152,5 +151,5 @@ $str='
 return $str;
 
 }
-}   
+}
 ?>       
