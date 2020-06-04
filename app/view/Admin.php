@@ -119,6 +119,33 @@ $str= " <form  action='Q&A?action=send_mess' method='post'>
     </form> ";
 return $str;
    }
+	public function request()
+{ $str="";
+    foreach($this->model->getRequests() as $admin)
+    {
+        if ( $admin->getstatus()=="pending"){
+        $str= $str . '<tr>'.
+        '<td> ' .".". $admin->getorder_id() . "</td> ".
+        '<td> ' . $admin->getproductid()  ."</td> ".
+        '<td> ' . $admin->getuserid() . "</td> ".
+        '<td> ' . $admin->getdate() . "</td> ".
+        '<td> ' .' <form  action="request?action=approve" method="post">
+        <input type="hidden" name="id_app"  value='.$admin->getorder_id().'>
+       <button type="submit"  name = "app" class="btn_3" >Approve</button></form>
+
+        <form  action="request?action=dissaprove" method="post">
+        <input type="hidden" name="id_dis"  value='.$admin->getorder_id().'>
+       <button type="submit"  name = "dis" class="btn_3" >Disapprove</button></form>'.
+        
+      " </td> ".
+  
+        '</tr>';
+    }
+   
+}
+    return $str;
+
+}
 	
 public function signup(){
     $str='<form action="employees.php?action=insert" method="post">
