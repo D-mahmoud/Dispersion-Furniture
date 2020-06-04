@@ -14,12 +14,14 @@ class User extends Model {
     private $number;
     private $email;
 
-  function __construct($ID,$lname="",$fname="",$username="",$email="",$number="",$address="",$password="",$role) {
+  function __construct($ID,$lname="",$fname="",$username="",$email="",$number="",$address="",$password="",$role="") {
     $this->ID = $ID;
-    $this->role="user";
-	    $this->db = $this->connect();
+   // $this->role="user";
+   $dbh = DBh::getInstance();
+		$mysqli = $dbh->getConnection(); 
+	    //$this->db = $this->connect();
 
-    if(""===$fname){
+    if(""===$username){
       $this->readUser($ID);
     }else{
       $this->fname = $fname;
@@ -86,7 +88,7 @@ class User extends Model {
   function setRole($role) {
     return $this->role = $role;
   }
-
+ 
   function getID() {
     return $this->ID;
   }
@@ -104,7 +106,7 @@ class User extends Model {
         $this->email = $row["email"];
         $this->address = $row["address"];
         $this->username = $row["username"];
-		#$_SESSION["Name"]=$row["Name"];
+		$_SESSION["Name"]=$row["username"];
 		$this->password=$row["Password"];
         $this->number = $row["number"];
 		$this->role = $row["role"];

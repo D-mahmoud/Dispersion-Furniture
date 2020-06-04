@@ -18,7 +18,7 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
 <!DOCTYPE html>
 <html lang="en">
 <body>
-<?php include "../extra/header.html" ?>
+<?php include "../extra/header.php" ?>
 
 <section class="breadcrumb_part">
     <div class="container">

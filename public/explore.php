@@ -16,7 +16,7 @@ $view = new Shop($controller, $model);
 <html lang="zxx">
   
     <!-- Header part end-->
-	<?php include "../extra/header.html" ?>
+	<?php include "../extra/header.php" ?>
 
 
     <!-- breadcrumb part start-->

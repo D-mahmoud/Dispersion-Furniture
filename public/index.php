@@ -33,7 +33,7 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
 <html lang="zxx">
   
     <!-- Header part end-->
-	<?php include "../extra/header.html" ?>
+	<?php include "../extra/header.php" ?>
 
     <!-- banner part start-->
     <section class="banner_part">

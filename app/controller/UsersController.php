@@ -1,3 +1,4 @@
+
 <?php
 
 require_once(__ROOT__ . "controller/Controller.php");
@@ -5,8 +6,7 @@ require_once(__ROOT__ . "controller/Controller.php");
 class UsersController extends Controller{
 	
 	public function insert() {
-		
-			$fname = $_REQUEST['fname'];
+		$fname = $_REQUEST['fname'];
 		$lname = $_REQUEST['lname'];
 		$username = $_REQUEST['username'];
 		$email = $_REQUEST['email'];
@@ -42,8 +42,9 @@ class UsersController extends Controller{
 	}
 	else{
 		$this->model->error();
-	}
+		}
 }
+
 public function login(){
 	$username = $_REQUEST['username'];
 	$password = $_REQUEST['password'];
@@ -56,12 +57,8 @@ public function login(){
 		$this->model->login($username,$password);
 	}
 }
-public function deleteUser(){
-$id=$_REQUEST['id'];
-$this->model->deleteUser($id);
-}
 
-	public function ignore(){
+public function ignore(){
 
 	$id=$_REQUEST['id'];
 	$this->model->ignore($id);
@@ -74,5 +71,7 @@ $id=$_SESSION["ID"];
 $this->model->send($message,$id);
 
 }
+
+
 }
 ?>
