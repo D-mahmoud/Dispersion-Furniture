@@ -1,11 +1,11 @@
 <?php
 
 define('__ROOT__', "../app/");
-require_once(__ROOT__ . "model/Orders.php");
+require_once(__ROOT__ . "model/Requests.php");
 require_once(__ROOT__ . "controller/OrderController.php");
 require_once(__ROOT__ . "view/Admin.php");
 
-$model = new Orders();
+$model = new Requests();
 $controller = new OrderController($model);
 $view = new Admin($controller, $model);
 
