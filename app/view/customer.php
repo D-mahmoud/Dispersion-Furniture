@@ -57,13 +57,18 @@ public function order_status()
         '<td> ' . $cust->getquantity() . "</td> ".
         '<td> ' . $cust->getDate() . "</td> ".
         '<td> ' . $cust->getstatus() . "</td> ".
-        '<td> ' . $cust->getCost() * $cust->getquantity(). "</td> ".
+         '<td> ' . $cust->getCost() * $cust->getquantity(). "</td> ".
         '<td> ' .' <form  action="status?action=confirm" method="post">
         <input type="radio" id="confrim" name="check" value="confirm">
         <label for="confirm"><h6>confirm</h6></label>
         <input type="radio" id="cancel" name="check" value="cancel">
         <label for="cancel"><h6>cancel</h6></label>
         <input type="hidden" name="id"  value='.$cust->getorder_id().'>
+        <input type="hidden" name="product_id"  value='.$cust->getproductid().'>
+        <input type="hidden" name="user_id"  value='.$cust->getuserid().'>
+        <input type="hidden" name="total"  value='. $cust->getCost() * $cust->getquantity().'>
+
+        
         <input type="submit" value="Submit">
         </form>'.
         
