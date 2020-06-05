@@ -61,30 +61,21 @@ session_start();
                                     <a class='nav-link' href='../public/explore.php'> products</a>
                                                          
                                 </li>
-                                <li class='nav-item dropdown'>
-                                    <a class='nav-link dropdown-toggle' href='../blog.html' id='navbarDropdown_3'
-                                        role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                                        pages
-                                    </a>
-                                    <div class='dropdown-menu' aria-labelledby='navbarDropdown_2'>
-                                        <a class='dropdown-item' href='../public/login.php'> 
-                                            login
-                                            
-                                        </a>
-                                        <a class='dropdown-item' href='../checkout.html'>product checkout</a>
-                                        <a class='dropdown-item' href='../cart.html'>shopping cart</a>
-                                        <a class='dropdown-item' href='../confirmation.html'>confirmation</a>
-                                        <a class='dropdown-item' href='../elements.html'>elements</a>
-                                         </div>
-                                          </li>
+                              
+                                <li class='nav-item'>
+                                <a class='nav-link' href='../public/status.php'>Active Orders</a>
+                                    </li>
                                           <li class='nav-item'>
                                     <a class='nav-link' href='../Track_Order.php'>Track Order</a>
                                         </li>
-					 <li class='nav-item'>
+                                        <li class='nav-item'>
                                     
                                         <a class='nav-link' href='../public/mess.php'> Messages</a>
                                                              
                                     </li>
+                                    <li class='nav-item'>
+                                    <a class='nav-link' href='../past_orders.php'>My Past Orders</a>
+                                     </li>
                                              <li class='nav-item'>
                                              <a class='nav-link' href='index.php?action=signOut'>SignOut</a>
                                          </li>
@@ -131,7 +122,7 @@ session_start();
                                              </a>
                                              <div class='dropdown-menu' aria-labelledby='navbarDropdown_4'>
                                         <a class='dropdown-item' href='../Delete_customer.php'> Delete Customer</a>
-                                        <a class='dropdown-item' href='../confirm_order.php'>Confirm Order</a>
+                                        <a class='dropdown-item' href='../public/request.php'>Confirm Order</a>
 										<a class='dropdown-item' href='../Track_Order._employee.php'>Track Order</a>
 									    <a class='dropdown-item' href='../Update_Product.php'> Update Products</a>
 						             	<a class='dropdown-item' href='../View_feedback.php'>View Feedback</a>
