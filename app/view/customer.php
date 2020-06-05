@@ -43,6 +43,54 @@ public function message($id)
           return $str;
     
     }
+public function order_status()
+{
+    $str="";
+    foreach($this->model->getOrders() as $cust)
+    {  if ($cust->getuserid()==$_SESSION['ID'])
+        {
+        if ( $cust->getstatus()=="approved"){
+        $str= $str . '<tr>'.
+        '<td> ' .".". $cust->getorder_id() . "</td> ".
+        '<td> ' . $cust->getproductid()  ."</td> ".
+        '<td> ' . $cust->getName() . "</td> ".
+        '<td> ' . $cust->getquantity() . "</td> ".
+        '<td> ' . $cust->getDate() . "</td> ".
+        '<td> ' . $cust->getstatus() . "</td> ".
+        '<td> ' . $cust->getCost() * $cust->getquantity(). "</td> ".
+        '<td> ' .' <form  action="status?action=confirm" method="post">
+        <input type="radio" id="confrim" name="check" value="confirm">
+        <label for="confirm"><h6>confirm</h6></label>
+        <input type="radio" id="cancel" name="check" value="cancel">
+        <label for="cancel"><h6>cancel</h6></label>
+        <input type="hidden" name="id"  value='.$cust->getorder_id().'>
+        <input type="submit" value="Submit">
+        </form>'.
+        
+      " </td> ".
+      '</tr>';
+         }
+         else{
+            $str= $str . '<tr>'.
+            '<td> ' .".". $cust->getorder_id() . "</td> ".
+            '<td> ' . $cust->getproductid()  ."</td> ".
+            '<td> ' . $cust->getName() . "</td> ".
+            '<td> ' . $cust->getquantity() . "</td> ".
+            '<td> ' . $cust->getDate() . "</td> ".
+            '<td> ' . $cust->getstatus() . "</td> ".
+            '<td> ' .  $cust->getCost() * $cust->getquantity()  ."</td> ".
+            '<td> ' .  $cust->getstatus()  ."</td> ".
+    
+          '</tr>';
+               
+         }
+         
+    }
+}
+    return $str;
+
+}
+
 
 }
 ?>
