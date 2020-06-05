@@ -79,7 +79,7 @@ public function order_status()
             '<td> ' . $cust->getDate() . "</td> ".
             '<td> ' . $cust->getstatus() . "</td> ".
             '<td> ' .  $cust->getCost() * $cust->getquantity()  ."</td> ".
-            '<td> ' .  $cust->getstatus()  ."</td> ".
+            '<td> ' . "<h6>". $cust->getstatus() ."<h6>"."</td> ".
     
           '</tr>';
                
