@@ -42,8 +42,8 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
           <div class="single_product_text text-center">
               <?php 
             if(isset($_POST['id']))	{
-              $id=$_REQUEST["id"];
-         
+              $id=$_REQUEST["id"];//id el product
+        
               $dbh = DBh::getInstance();
               $mysqli = $dbh->getConnection(); 
 
@@ -62,18 +62,16 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
                     <h3>
 	          <?php echo $row["name"];?></h3>
 	             <p>This <?php echo $row["type"];?> name is <?php echo $row["name"];?> it's code number is  <?php echo $row["code"];?></p>
+               <p><h3><?php echo $row["cost"];?>EPG</h3></p>
+
                <div class="card_area">
                 <div class="product_count_area">
                     <p>Quantity</p>
-                    <div class="product_count d-inline-block">
-                        <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
-                        <input class="product_count_item input-number" type="text" value="1" min="0" max="10">
-                        <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
-                    </div>
-                    <p><?php echo $row["cost"];?>EPG</p>
+                   
                 </div>
               <div class="add_to_cart">
-                  <a href="#" class="btn_3">add to cart</a>
+              <?php  echo $view->cart_button($id); ?>
+
               </div>
               <?php	}}
             }
