@@ -1,4 +1,5 @@
 
+
 <?php
 
 require_once(__ROOT__ . "model/Model.php");
@@ -11,7 +12,38 @@ class Users extends Model {
 	function __construct() {
 		$this->fillArray();
 	}
+	 function deleteUser($id){
+		    $dbh = DBh::getInstance();
+     $mysqli = $dbh->getConnection();  
+      $sql=" DELETE FROM user WHERE  id='$id'";
+       
+        $result =	$mysqli->query($sql);
 
+          if($result  == true){
+              //  echo "deleted successfully.";
+                     return $result;  
+            } 
+            else{
+                //echo "ERROR: Could not able to execute $sql. " .  $dbh->getConnection()->error;
+            }
+		   
+		   }
+		   function delete($id){
+		    $dbh = DBh::getInstance();
+     $mysqli = $dbh->getConnection();  
+      $sql=" DELETE FROM user WHERE  id='$id'";
+       
+        $result =	$mysqli->query($sql);
+
+          if($result  == true){
+                echo "deleted successfully.";
+                     return $result;  
+            } 
+            else{
+                echo "ERROR: Could not able to execute $sql. " .  $dbh->getConnection()->error;
+            }
+		   
+		   }
 	function fillArray() {
 		$this->users = array();
 		$dbh = DBh::getInstance();
@@ -53,7 +85,7 @@ class Users extends Model {
 	  $result =	$mysqli->query($sql);
   
 	  if( $result === true){
-            echo "Records inserted successfully.";
+           // echo "Records inserted successfully.";
             $this->fillArray();
         } else{
             echo "ERROR: Could not able to execute $sql. " .  $this->dbh->getConn()->error;
@@ -143,5 +175,8 @@ class Users extends Model {
 				 
 			   }
 			 
+		 }  
+	
+
 		 }  
 	
