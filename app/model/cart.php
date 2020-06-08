@@ -8,14 +8,14 @@ class Cart extends Model {
     private $userid;
     private $quantity;
     private $productid;
-    private $productname;
+    private $name;
     private $cost;
-    private $type;
+    private $cart_id;
 
     
    
 
-  function __construct($id,$userid="",$quantity="",$productid="",$productname="",$cost="",$type="") {
+  function __construct($id,$userid="",$quantity="",$productid="",$name="",$cost="",$cart_id="") {
     $this->id = $id;
 	    $this->db = $this->connect();
 
@@ -25,10 +25,9 @@ class Cart extends Model {
       $this->userid = $userid;
       $this->quantity = $quantity;
       $this->productid = $productid;
-      $this->$productname = $productname;
+      $this->name = $name;
       $this->cost = $cost;
-      $this->$type = $type;
-    
+      $this->cart_id=$cart_id;
       
     }
   }
@@ -39,13 +38,20 @@ class Cart extends Model {
   function setuserid($userid) {
     return $this->userid = $userid;
   } 
+  function getcart_id() {
+    return $this->cart_id;
+  }
+ 
+  function setcart_id($cart_id) {
+    return $this->cart_id = $cart_id;
+  } 
   function getproductname() {
-    return $this->productname;
+    return $this->name;
   
   }
  
-  function setproductname($productname) {
-    return $this->productname = $productname;
+  function setname($name) {
+    return $this->name = $name;
 
   } 
  
@@ -80,6 +86,7 @@ class Cart extends Model {
   function getID() {
     return $this->id;
   }
+ 
 
   function readCart($id){
     $dbh = DBh::getInstance();
@@ -91,12 +98,10 @@ class Cart extends Model {
         $row = $db->fetchRow();
         $this->quantity = $row["quantity"];
         $this->productid = $row["productid"];
-        $this->productname = $row["name"];
+        $this->name = $row["name"];
         $this->userid = $row["userid"];
         $this->cost = $row["cost"];
-        $this->type=$row["type"];
-        $this->picture = '<img src= "../img/product/"'.$row["picture"].'>';
-        
+      
     }
     else {
        
@@ -105,14 +110,9 @@ class Cart extends Model {
         $this-> $code="";
         $this->$cost="";
         $this->$picture="";
-        $this->type="";
-        $this->productname="";
-   
+        $this->name="";
 
     }
   }
-
-
-  
-	 
+ 
 }
