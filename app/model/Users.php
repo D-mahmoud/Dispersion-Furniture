@@ -128,7 +128,7 @@ class Users extends Model {
 					$_SESSION["username"]=$row["username"];
 					$_SESSION["role"]=$row["role"];
 			
-				   header("Location:employees.php");
+				   header("Location:explore.php");
 				}
 			}
 			
