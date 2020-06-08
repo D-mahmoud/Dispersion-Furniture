@@ -1,4 +1,5 @@
 
+
 <?php
 
 require_once(__ROOT__ . "controller/Controller.php");
@@ -80,6 +81,13 @@ public function send_mess(){
 	
 	}
 
-
+public function deleteUser(){
+$id=$_REQUEST['id'];
+$this->model->deleteUser($id);
+}
+public function delete(){
+$id=$_REQUEST['id'];
+$this->model->deleteUser($id);
+}
 
 }
