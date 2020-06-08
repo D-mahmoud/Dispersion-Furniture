@@ -7,10 +7,11 @@ require_once(__ROOT__ . "model/Message.php");
 
 class Messages extends Model {
     private $messages;
+    private $id_reply;
 
 	function __construct() {
-		$this->fillArray();
-	}
+        $this->fillArray();
+    	}
 
 	function fillArray() {
 		$this->messages = array();
@@ -37,7 +38,8 @@ class Messages extends Model {
 		else {
 			return false;
 		}
-	}
+    }
+    
 function ignore($id){
     $dbh = DBh::getInstance();
     $mysqli = $dbh->getConnection(); 
@@ -59,8 +61,9 @@ function send($message,$id){
     $mysqli = $dbh->getConnection(); 
     $d= date("Y-m-d");
     $sql = "INSERT INTO messages (cust_id,message,Date) VALUES ('$id','$message','$d')";
-    $result =	$mysqli->query($sql);
-    if($result  == true){
+    $result =$mysqli->query($sql);
+    if($result  == true)
+    {
         echo "<script type='text/javascript'>alert(\"Message sent successfully\")
         location='mess.php';</script>";
     }
@@ -68,7 +71,8 @@ function send($message,$id){
         echo "ERROR: Could not able to execute $sql. " .  $dbh->getConnection()->error;
     }
 }
-	function send_mess($message,$emp_id,$cust_id,$mess_id){
+
+function send_mess($message,$emp_id,$cust_id,$mess_id){
     $dbh = DBh::getInstance();
     $mysqli = $dbh->getConnection(); 
     $d= date("Y-m-d");
