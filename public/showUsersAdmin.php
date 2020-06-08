@@ -15,7 +15,7 @@ $view = new usersAdmin($controller, $model);
 <!doctype html>
 <html lang="zxx">
     <!-- Header part end-->
-	<?php include "../extra/header.html" ?>
+	<?php include "../extra/header.php" ?>
 
 
     <!-- breadcrumb part start-->

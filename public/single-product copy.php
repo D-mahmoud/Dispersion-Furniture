@@ -18,7 +18,7 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
 <html lang="zxx">
   
     <!-- Header part end-->
-	<?php include "../extra/header.html" ?>
+	<?php include "../extra/header.php" ?>
     <!-- breadcrumb part start-->
     <section class="breadcrumb_part single_product_breadcrumb">
         <div class="container">
