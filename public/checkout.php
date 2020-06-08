@@ -43,6 +43,8 @@ include "../extra/header.php" ;
             <form class="row contact_form" action="#" method="post" novalidate="novalidate">
           <?php echo $view->billing(); ?>
             </form>
+            <a class="btn_1" href="Receipt.php">View Receipt</a>
+
           </div>
           <div class="col-lg-4">
             <div class="order_box">
