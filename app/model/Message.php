@@ -70,7 +70,7 @@ class Message extends Model {
   function readMessage($id){
     $dbh = DBh::getInstance();
 		$mysqli = $dbh->getConnection(); 
-    $sql = "SELECT * FROM messages  where id=$id";
+    $sql = "SELECT * FROM messages  where id=$id ";
 		$result =	$mysqli->query($sql);
     if ($result->num_rows == 1){
         $row = $db->fetchRow();
