@@ -9,5 +9,18 @@ class CartController extends Controller{
 	
 	}
 	
+
+public function insert() {
+			
+$id = $_REQUEST['id'];
+$quantity =$_REQUEST['amount'];
+$user_id=$_SESSION["ID"];
+		
+$this->model->insert($id,$quantity,$user_id);
+
+	}
+
+
+
 }
 ?>
