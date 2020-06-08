@@ -27,7 +27,7 @@ class UsersController extends Controller{
 		}
 		else
 		{
-			if ($_REQUEST['role'] =="customer" || $_REQUEST['role'] =="admin")
+			if ($_REQUEST['role'] =="employee" || $_REQUEST['role'] =="admin")
 			{
 			$role=$_REQUEST['role'];
 			}
