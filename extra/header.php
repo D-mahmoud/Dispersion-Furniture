@@ -78,6 +78,9 @@ session_start();
                                      <a class='nav-link' href='../public/mess.php'> Messages</a>
                                                           
                                  </li>
+                                 <li class='nav-item'>
+                                 <a class='nav-link' href='../public/FAQ.php'> Help</a>
+                             </li>
                                              <li class='nav-item'>
                                              <a class='nav-link' href='index.php?action=signOut'>SignOut</a>
                                          </li>
@@ -119,9 +122,6 @@ session_start();
                                                 </li>
                                          <li class='nav-item'>
                                     <a class='nav-link' href=../public/showProductsAdmin.php'> Update Products</a>
-                                        </li>
-					<li class='nav-item'>
-                                    <a class='nav-link' href=../public/request.php'> Requested Orders</a>
                                         </li>
                                         <li class='nav-item'>
                                     <a class='nav-link' href=../public/showUsersAdmin.php '>Remove Customers</a>
@@ -168,7 +168,9 @@ session_start();
                             <li class='nav-item'>
                                     <a class='nav-link' href='../public/index.php'>Home</a>
                                 </li>
-                                
+                                <li class='nav-item'>
+                                <a class='nav-link' href='../public/FAQ.php'> Help</a>
+                            </li>
                                 
                             </ul>
                         </div>";
