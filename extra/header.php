@@ -120,6 +120,9 @@ session_start();
                                          <li class='nav-item'>
                                     <a class='nav-link' href=../public/showProductsAdmin.php'> Update Products</a>
                                         </li>
+					<li class='nav-item'>
+                                    <a class='nav-link' href=../public/request.php'> Requested Orders</a>
+                                        </li>
                                         <li class='nav-item'>
                                     <a class='nav-link' href=../public/showUsersAdmin.php '>Remove Customers</a>
                                         </li>
