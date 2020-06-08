@@ -50,7 +50,7 @@ $view = new customer($controller, $model);
                                if (isset($_POST['submit']))
                                {    
                                 $id=$_REQUEST["id"]; 
-                                echo $id; 
+                               // echo $id; 
                               echo $view-> method($id);   
                                }               
                                 ?>
