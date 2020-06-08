@@ -1,210 +1,220 @@
 <?php
 require_once(__ROOT__ . "view/View.php");
-class Admin extends View{
+class customer extends View{
 
 public function output()
    {
-    $str="";
-    $str= $str . ' <div class="load_more_btn text-center">
-    <a href="signup.php?action=insert" class="btn_3">Add New Account</a>
-    </div>';
-    return $str;
-   }
-   
-
-public function customer_message() 
-{ 
-    $str="";
-    foreach($this->model->getMessages() as $admin)
-    {   if( $admin->getemp_id()==0){
-    $str= $str . '<tr>
-    '.
-      '<td> ' . "   . ".$admin->getID() . " </td> ".
-      '<td> ' .  $admin->getcust_id() ."</td> ".
-      '<td> ' .  $admin->getdate()  . " </td> ".
-      '<td> ' .$admin->getmessage(). " </td> ".
-      '<td> ' .'
-      <form  action="Q&A?action=ignore" method="post">
-      <input type="hidden" name="id"  value='.$admin->getID().'>
-     <button type="submit"  name = "ignore" class="btn_3" >Ignore</button></form>'.
-     ' 
-      <form  action="answer.php" method="post"  >
-      <input type="hidden" name="id"  id="id" value='.$admin->getID().'>
-      <input type="hidden" name="customer"  id="customer" value='.$admin->getcust_id().'>
-      <button type="submit" class="btn_3" name="submit">Answer</button>
-      </form>'." </td> ".
-
-      '</tr>';
-      }
-    }
-          //      <input type="submit" name="submit" value="submit" />
-
-
-      return $str;
-
-}
-public function show ($id){
-    foreach($this->model->getMessages() as $admin)
-{
-    if ($admin->getID()==$id){
-    $str=  $admin->getmessage();
-    }
-}
-return $str;
-
-}
-
-public function reply($id,$customer){
-    $str="";
-    foreach($this->model->getMessages() as $admin)
-    {
-        if( $admin->getreply_on()==$id){
-           
-        $str= $str . '<tr>
-        '.
-          '<td> ' . ". ".$admin->getID() . " </td> ".
-          '<td> ' .  $admin->getdate()  . " </td> ".
-          '<td> ' .$admin->getmessage(). " </td> ".
-          '<td> ' ."Employer:".$admin->getemp_id(). " </td> ".
-
-
-          '</tr>';
-          
-    }
-}
-      return $str;
-
-}
-
-public function write($x,$id)
-   {
-$str= " <form  action='Q&A?action=send_mess' method='post'>
+$str= "   <form  action='mess.php?action=send' method='post'>
     <div class='mt-10'>
     <textarea class='single-textarea' name ='message' placeholder='Write here' onfocus='this.placeholder = '''
     onblur='this.placeholder = 'Message'' required></textarea>
     </div> 
-    <input type='hidden' name='x' id='x' value=$x>
-    <input type='hidden' name='id' id='id' value=$id>
-    <button type='submit' class='btn_3' >Send Reply</button>  
+    <button type='submit' class='btn_3' >Send</button>  
     </form> ";
 return $str;
    }
-
-public function view_admin() 
-{
-    $str="";
-    foreach($this->model->getUsers() as $admin)
+public function message($id)
     {
-        if ($admin->getRole()=="admin")
-        {
+        $str="";
+        foreach($this->model->getMessages() as $cust)
+        {   if( $cust->getcust_id()==$id){
+            if( $cust->getemp_id()==0){
         $str= $str . '<tr>
-      '.
-        '<td> ' . $admin->getID() . " </td> ".
-        '<td> ' . $admin->getFname() . " ".$admin->getLname(). " </td> ".
-        '<td> ' . $admin->getEmail() . " </td> ".
-        '<td> ' . $admin->getNumber() . " </td> ".
-    
-        '</tr>';
+        '.
+          '<td> ' .$cust->getID() . " </td> ".
+          '<td> ' .  $cust->getdate() ."</td> ".
+          '<td> ' .  $cust->getmessage()  . " </td> ".
+          '<td> ' .  "YOU"  . " </td> ".
+
+          '</tr>';
+          }
+          else{
+                $str= $str . '<tr>
+        '.
+          '<td> ' .$cust->getID() . " </td> ".
+          '<td> ' .  $cust->getdate() ."</td> ".
+          '<td> ' .  $cust->getmessage()  . " </td> ".
+          '<td> ' .  "Employee"  . " </td> ".
+
+          '</tr>';
+          }
         }
     }
-    return $str;
-}
-public function view_employee() 
+          return $str;
+    
+    }
+ 
+
+public function order_status()
 {
     $str="";
-    foreach($this->model->getUsers() as $employee)
-    {
-        if ($employee->getRole()=="employee")
+    foreach($this->model->getRequests() as $cust)
+    {  if ($cust->getuserid()==$_SESSION['ID'])
         {
+        if ( $cust->getstatus()=="approve"){
         $str= $str . '<tr>'.
-        '<td> ' . $employee->getID() . "</td> ".
-        '<td> ' . $employee->getFname() . " ".$employee->getLname(). "</td> ".
-        '<td> ' . $employee->getEmail() . "</td> ".
-        '<td> ' . $employee->getNumber() . "</td> ".
-       '<td></td> '.
-        '</tr>';
-        }
-    }
-    return $str;
-}  
+        '<td> ' .".". $cust->getorder_id() . "</td> ".
+        '<td> ' . $cust->getproductid()  ."</td> ".
+        '<td> ' . $cust->getName() . "</td> ".
+        '<td> ' . $cust->getquantity() . "</td> ".
+        '<td> ' . $cust->getDate() . "</td> ".
+        '<td> ' . $cust->getstatus() . "</td> ".
+        '<td> ' . $cust->getCost() * $cust->getquantity(). "</td> ".
+        '<td> ' .' <form  action="status?action=confirm" method="post">
+        <input type="radio" id="confrim" name="check" value="confirm">
+        <label for="confirm"><h6>confirm</h6></label>
+        <input type="radio" id="cancel" name="check" value="cancel">
+        <label for="cancel"><h6>cancel</h6></label>
 
-public function request()
-{ $str="";
-    foreach($this->model->getRequests() as $admin)
-    {
-        if ( $admin->getstatus()=="pending"){
-        $str= $str . '<tr>'.
-        '<td> ' .".". $admin->getorder_id() . "</td> ".
-        '<td> ' . $admin->getproductid()  ."</td> ".
-        '<td> ' . $admin->getuserid() . "</td> ".
-        '<td> ' . $admin->getdate() . "</td> ".
-        '<td> ' .' <form  action="request?action=approve" method="post">
-        <input type="hidden" name="id_app"  value='.$admin->getorder_id().'>
-       <button type="submit"  name = "app" class="btn_3" >Approve</button></form>
+        <input type="hidden" name="id"  value='.$cust->getorder_id().'>
+        <input type="hidden" name="product_id"  value='.$cust->getproductid().'>
+        <input type="hidden" name="user_id"  value='.$cust->getuserid().'>
+        <input type="hidden" name="quantity"  value='.$cust->getquantity().'>
+        <input type="hidden" name="total"  value='. $cust->getCost() * $cust->getquantity().'>
 
-        <form  action="request?action=disaprove" method="post">
-        <input type="hidden" name="id_dis"  value='.$admin->getorder_id().'>
-       <button type="submit"  name = "dis" class="btn_3" >Disapprove</button></form>'.
+        <input type="submit" value="Submit">
+        </form>'.
         
       " </td> ".
-  
-        '</tr>';
-    }
+      '</tr>'; 
+         }
+         else{
+            $str= $str . '<tr>'.
+            '<td> ' .".". $cust->getorder_id() . "</td> ".
+            '<td> ' . $cust->getproductid()  ."</td> ".
+            '<td> ' . $cust->getName() . "</td> ".
+            '<td> ' . $cust->getquantity() . "</td> ".
+            '<td> ' . $cust->getDate() . "</td> ".
+            '<td> ' . $cust->getstatus() . "</td> ".
+            '<td> ' .  $cust->getCost() * $cust->getquantity()  ."</td> ".
+            '<td> ' . "<h6>". $cust->getstatus(). "</h6>" ."</td> ".
     
+          '</tr>';
+               
+         }
+         
+    }
 }
     return $str;
 
 }
+public function billing()
+{          
+       $str=" <h5> ". "Dear "."". $_SESSION['username'].",<h5> "." ". "You do not have any confrimed Orders "."</h5>";
 
-public function signup(){
-    $str='<form action="employees.php?action=insert" method="post">
-    <div class="col-md-12 form-group p_star">
-                    
+    foreach($this->model->getOrders() as $cust)
+    {  if ($cust->getuserid()==$_SESSION['ID'])
+        {
+            $str= " <div class='col-md-6 form-group p_star'>
+        <h5>" ."First Name <br>".  $cust->getfname()."</h5>
+        </div>
+        <div class='col-md-6 form-group p_star'>
+         <h5> "."Last Name <br>".   $cust->getlname()."</h5>
+         </div>
+         <div class='col-md-12 form-group'>
+        <h5> "."Address <br>".  $cust->getAdd()."</h5>
+         </div>
+         <div class='col-md-12 form-group p_star'>
+         <h5> ". "Mobile <br>". $cust->getNum()."</h5>
+         </div>
+         <div class='col-md-12 form-group p_star'>
+         <h5> ". "Email <br>". $cust->getEmail()."</h5>
+         </div>";
+        }
+        
+    }
+    return $str;
+
+}
+public function product()
+{ $str="";
+    foreach($this->model->getOrders() as $cust)
+    {  if ($cust->getuserid()==$_SESSION['ID'] &&  $cust->getpay()!="")
+        {
+            $str= $str . '<tr>'.
+            
+             ' <th>'.$cust->getproduct_name().'</th>'
+             .'<td> &nbsp;' .'x'. $cust->getquantity().'</td>'
+             .'<td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'. $cust->getTotal().'</td>'
+             .'</tr>';
+        } 
+    }
+    return $str;
+}
+
+public function subtotal(){
+    $subt=0;
+    foreach($this->model->getOrders() as $cust)
+    { 
+         if ($cust->getuserid()==$_SESSION['ID'] &&  $cust->getPay()!="")
+        {
+            $subt=$cust->getTotal()+$subt;
+            
+        }
+    }
+    return $subt;
+}
+
+public function product_checkout()
+{ $str="";
+    foreach($this->model->getOrders() as $cust)
+    {  if ($cust->getuserid()==$_SESSION['ID'] &&  $cust->getpay()=="")
+        {
+            $str= $str . '<tr>'.
+            
+             ' <th>'.$cust->getproduct_name().'</th>'
+             .'<td> &nbsp;' .'x'. $cust->getquantity().'</td>'
+             .'<td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'. $cust->getTotal().'</td>'
+             .'</tr>';
+        } 
+    }
+    return $str;
+}
+
+
+public function subtotal_checkout(){
+    $subt=0;
+    foreach($this->model->getOrders() as $cust)
+    { 
+         if ($cust->getuserid()==$_SESSION['ID'] && $cust->getpay()=="")
+        {
+            $subt=$cust->getTotal()+$subt;
+        }
+    }
+    return $subt;
+}
+
+public function payment()
+{ 
+    foreach($this->model->getOrders() as $cust)
+    {  
+        if ($cust->getuserid()==$_SESSION['ID']  && $cust->getpay()=="")
+    {
+        $str='<form  action=pay.php  method="post">
+        <input type="hidden" name="id"  value='.$cust->getID().'>
+        <button type="submit" name="submit" class="btn_3" >Click to choose payment method</button>  
+        </form>';
+    }
+    }
    
-           <div class="col-md-12 form-group p_star">
-                                <input type="text" class="form-control" id="fname" name="fname" value=""
-                                    placeholder="First Name">
-                            </div>
-                            <div class="col-md-12 form-group p_star">
-                                <input type="text" class="form-control" id="lname" name="lname" value=""
-                                    placeholder="Last Name" required="required">
-                            </div>
-                            <div class="col-md-12 form-group p_star">
-                                <input type="text" class="form-control" id="username" name="username" value=""
-                                required="required" placeholder="UserName">
-                            </div>
-                            <div class="col-md-12 form-group p_star">
-                                <input type="text" class="form-control" id="email" name="email" value=""
-                                required="required"  placeholder="Email" onKeyup=checkemail()>
-                                <div id="emailmsg"></div>
-                            </div>
-                            <div class="col-md-12 form-group p_star">
-                                <input type="text" class="form-control" id="number" name="number" value=""
-                                required="required"  placeholder="Phone Number">
-                            </div>
-                            <div class="col-md-12 form-group p_star">
-                                <input type="text" class="form-control" id="add" name="add" value=""
-                                required="required" placeholder="Address">
-                            </div>
-                            <div class="col-md-12 form-group p_star">
-                                <input type="password" class="form-control" id="password" name="password" value=""
-                                required="required" placeholder="Password">
-                            </div>
-                           <div class="col-md-12 form-group p_star">      
-							<input type="password" class="form-control" id="confirm_password" name="confirm_password" value=""
-                            required="required" placeholder="Confirm your Password">
-                             </div>
-                             <div class="col-md-12 form-group p_star">      
-                             <input type="text" class="form-control" id="role" name="role" value=""
-                             required="required" placeholder=" Enter admin/employee">
-                              </div>
-                            <div class="col-md-12 form-group">
-                                
-                            <input type="submit" /></div>
-                                </form>';
+    return $str;
+}
+
+public function method($id)
+{
+   // foreach($this->model->getPayments() as $pay)
+   // by2ra men database a5r entry bas mesh 3arfa leah 
+
+       $str=' <form  action=checkout.php?action=pay  method="post">
+        <input type="radio" id="premises" name="check" value="premises">
+        <label for="premises"><h6>ON premises</h6></label><br>
+        <input type="radio" id="delivery" name="check" value="delivery">
+        <label for="delivery"><h6>On Delivery</h6></label><br>
+        <input type="submit" name="payy" value="Submit">
+        <input type="hidden" name="id" id="id" value='.$id.'>
+        </form>';
 return $str;
-
+}   
 }
 
-}
 ?>
