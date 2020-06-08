@@ -1,13 +1,16 @@
 <?php if (!isset($_SESSION)) {
 session_start();
 }?>
+    <!-- 6/6 8ayarat customer w cart mazbbtsh github -->
+
                             <html>
 							<head>
     <!-- Required meta tags -->
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
-	
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
     <title>pillloMart</title>
     <link rel='icon' href='../img/d.jpeg'>
     <!-- Bootstrap CSS -->
@@ -53,9 +56,7 @@ session_start();
                                  <li class='nav-item'>
                                     <a class='nav-link' href='../public/index.php'>Home</a>
                                     </li>
-								    <li class='nav-item'>
-                                    <a class='nav-link' href='../past_orders.php'>My Past Orders</a>
-                                     </li>
+								    
                                      <li class='nav-item'>
                                     
                                     <a class='nav-link' href='../public/explore.php'> products</a>
@@ -65,17 +66,18 @@ session_start();
                                 <li class='nav-item'>
                                 <a class='nav-link' href='../public/status.php'>Active Orders</a>
                                     </li>
-                                          <li class='nav-item'>
-                                    <a class='nav-link' href='../Track_Order.php'>Track Order</a>
-                                        </li>
-                                        <li class='nav-item'>
                                     
-                                        <a class='nav-link' href='../public/mess.php'> Messages</a>
-                                                             
-                                    </li>
+                                       
                                     <li class='nav-item'>
-                                    <a class='nav-link' href='../past_orders.php'>My Past Orders</a>
-                                     </li>
+                                    <a class='nav-link' href='../public/checkout.php'>Checkout</a>
+                                        </li>
+                                        
+                                    
+                                     <li class='nav-item'>
+                                    
+                                     <a class='nav-link' href='../public/mess.php'> Messages</a>
+                                                          
+                                 </li>
                                              <li class='nav-item'>
                                              <a class='nav-link' href='index.php?action=signOut'>SignOut</a>
                                          </li>
@@ -84,26 +86,23 @@ session_start();
                                   
                                      else if(($_SESSION['role']) == 'admin')  {
                                       echo"<ul class='navbar-nav'>
-                    
-                                        <li class='nav-item dropdown'>
-                                         <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown_2'
-                                        role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                                        Admin Panel
-                                          </a>
-                                         <div class='dropdown-menu' aria-labelledby='navbarDropdown_2'>
-                                        <a class='dropdown-item' href='../Update_Product.php'> Update Products</a>
-                                        <a class='dropdown-item' href='../Update_Employee.php'>Update Employee List</a>
-										<a class='dropdown-item' href='../view_feedback.php'>View Feedback</a>
-
-                                             </div>
-                                             </li>
-                                             <li class='nav-item'>
-                                             <a class='nav-link' href='../Track_Order.php'>Track Order</a>
-                                             </li>
+                                      <li class='nav-item'>
+                                      <a class='nav-link' href='../public/index.php'>Home</a>
+                                      </li>                                              
                                              <li class='nav-item'>
                                              <a class='nav-link' href='../public/employees'>Employees </a>
                                              </li>
-					      <li class='nav-item'>
+                                             <li class='nav-item'>
+                                             <a class='nav-link' href=../public/showUsersAdmin.php '>Remove Customers</a>
+                                                 </li>
+                                                 <li class='nav-item'>
+                                             <a class='nav-link' href=#'>Update Employees</a>
+                                                 </li>
+
+                                                 <li class='nav-item'>
+                                                 <a class='nav-link' href=# '>View Feedback</a>
+                                                     </li>
+                                             <li class='nav-item'>
                                     
                                              <a class='nav-link' href='../public/Q&A.php'> Messages</a>
                                                                   
@@ -115,30 +114,22 @@ session_start();
                                     else   {
                                                 echo"<ul class='navbar-nav'>
                               
-                                             <li class='nav-item dropdown'>
-                                            <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown_4'
-                                            role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                                            Employee Panel
-                                             </a>
-                                             <div class='dropdown-menu' aria-labelledby='navbarDropdown_4'>
-                                        <a class='dropdown-item' href='../Delete_customer.php'> Delete Customer</a>
-                                        <a class='dropdown-item' href='../public/request.php'>Confirm Order</a>
-										<a class='dropdown-item' href='../Track_Order._employee.php'>Track Order</a>
-									    <a class='dropdown-item' href='../Update_Product.php'> Update Products</a>
-						             	<a class='dropdown-item' href='../View_feedback.php'>View Feedback</a>
-
-                                        
-                                     </div>
-                                        </li>
+                                                <li class='nav-item'>
+                                                <a class='nav-link' href='../public/index.php'>Home</a>
+                                                </li>
                                          <li class='nav-item'>
-                                    <a class='nav-link' href='../Track_Order.php'>Track Order</a>
+                                    <a class='nav-link' href=../public/showProductsAdmin.php'> Update Products</a>
                                         </li>
-					 <li class='nav-item'>
+                                        <li class='nav-item'>
+                                    <a class='nav-link' href=../public/showUsersAdmin.php '>Remove Customers</a>
+                                        </li>
+                                        <li class='nav-item'>
                                     
-                                             <a class='nav-link' href='../public/Q&A.php'> Messages</a>
-                                                                  
-                                         </li>
-                                    
+                                        <a class='nav-link' href='../public/Q&A.php'> Messages</a>                
+                                    </li>
+                                    <li class='nav-item'>
+                                    <a class='nav-link' href=# '>View Feedback</a>
+                                        </li>
                                  <li class='nav-item'>
                                     <a class='nav-link' href='index.php?action=signOut'>SignOut</a>
                                 </li>
@@ -149,7 +140,7 @@ session_start();
                         </div>
                         <div class='hearer_icon d-flex align-items-center'>
                             <a id='search_1' href='javascript:void(0)'><i class='ti-search'></i></a>
-                            <a href='cart.html'>
+                            <a href='../public/cart.php'>
                                 <i class='flaticon-shopping-cart-black-shape'></i>
                             </a>
                         </div>
@@ -157,15 +148,7 @@ session_start();
                 </div>
             </div>
         </div>
-        <div class='search_input' id='search_input_box'>
-            <div class='container '>
-                <form class='d-flex justify-content-between search-inner'>
-                    <input type='text' class='form-control' id='search_input' placeholder='Search Here'>
-                    <button type='submit' class='btn'></button>
-                    <span class='ti-close' id='close_search' title='Close Search'></span>
-                </form>
-            </div>
-        </div>";
+        ";
         }
                      else{
                             
