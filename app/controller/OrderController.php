@@ -32,6 +32,12 @@ public function pay(){
     $this->model->pay($check,$order_id);
     
     }
+    public function req(){
+        $id= $_REQUEST['id'];
+        $check=$_REQUEST["check"];
+        $this->model->req($id,$check);
+    
+    }	   
 
 }
 ?>
