@@ -9,7 +9,7 @@ require_once(__ROOT__ . "view/Shop.php");
 $model = new Products();
 $controller = new ProductsController($model);
 $view = new Shop($controller, $model);
-?>
+?> 
 
 	
 <!doctype html>
